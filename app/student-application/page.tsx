@@ -79,6 +79,14 @@ type FormData = {
   declaration: boolean;
 };
 
+type UploadData = {
+  idFront: File | null;
+  idBack: File | null;
+  certificateScan: File | null;
+  passportPhoto: File | null;
+  feeReceipt: File | null;
+};
+
 const INITIAL: FormData = {
   firstName: "", middleName: "", lastName: "", dob: "", gender: "",
   nationality: "", maritalStatus: "", religion: "", county: "",
@@ -89,8 +97,17 @@ const INITIAL: FormData = {
   declaration: false,
 };
 
+const INITIAL_UPLOADS: UploadData = {
+  idFront: null,
+  idBack: null,
+  certificateScan: null,
+  passportPhoto: null,
+  feeReceipt: null,
+};
+
 export default function StudentApplicationPage() {
   const [form, setForm] = useState<FormData>(INITIAL);
+  const [uploads, setUploads] = useState<UploadData>(INITIAL_UPLOADS);
   const [submitted, setSubmitted] = useState(false);
   const [submitState, setSubmitState] = useState<"idle" | "submitting" | "error">("idle");
   const [step, setStep] = useState(1);
@@ -105,6 +122,11 @@ export default function StudentApplicationPage() {
   const setDoc = (key: keyof FormData["docs"], value: boolean) => {
     setStepErrors([]);
     setForm((f) => ({ ...f, docs: { ...f.docs, [key]: value } }));
+  };
+
+  const setUpload = (key: keyof UploadData, file: File | null) => {
+    setStepErrors([]);
+    setUploads((u) => ({ ...u, [key]: file }));
   };
 
   const isBlank = (value: string) => value.trim().length === 0;
@@ -143,6 +165,15 @@ export default function StudentApplicationPage() {
     if (stepNumber === 5) {
       const docsComplete = Object.values(form.docs).every(Boolean);
       if (!docsComplete) errors.push("Please confirm all required documents are ready.");
+      if (!uploads.idFront) errors.push("National ID / Passport (Front) upload is required.");
+      if (!uploads.idBack) errors.push("National ID / Passport (Back) upload is required.");
+      if (!uploads.certificateScan) errors.push("Secondary Certificate upload is required.");
+      if (!uploads.passportPhoto) errors.push("Passport photo upload is required.");
+      if (!uploads.feeReceipt) errors.push("Application fee receipt upload is required.");
+      const totalUploadSize = Object.values(uploads).reduce((sum, file) => sum + (file?.size ?? 0), 0);
+      if (totalUploadSize > 7.5 * 1024 * 1024) {
+        errors.push("Total upload size must be 7.5MB or less.");
+      }
       if (!form.declaration) errors.push("You must accept the declaration before submitting.");
     }
 
@@ -183,7 +214,7 @@ export default function StudentApplicationPage() {
     setStepErrors([]);
     setSubmitState("submitting");
 
-    const payload = new URLSearchParams();
+    const payload = new FormData();
     payload.set("form-name", "student-application");
     payload.set("first_name", form.firstName);
     payload.set("middle_name", form.middleName);
@@ -211,6 +242,11 @@ export default function StudentApplicationPage() {
     payload.set("doc_photos", form.docs.photos ? "yes" : "no");
     payload.set("doc_fee", form.docs.fee ? "yes" : "no");
     payload.set("declaration", form.declaration ? "yes" : "no");
+    if (uploads.idFront) payload.set("id_front_image", uploads.idFront);
+    if (uploads.idBack) payload.set("id_back_image", uploads.idBack);
+    if (uploads.certificateScan) payload.set("certificate_scan", uploads.certificateScan);
+    if (uploads.passportPhoto) payload.set("passport_photo", uploads.passportPhoto);
+    if (uploads.feeReceipt) payload.set("fee_receipt", uploads.feeReceipt);
 
     const botFieldInput = e.currentTarget.querySelector('input[name="bot-field"]') as HTMLInputElement | null;
     const botFieldValue = botFieldInput?.value?.trim() ?? "";
@@ -221,8 +257,7 @@ export default function StudentApplicationPage() {
     try {
       const res = await fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: payload.toString(),
+        body: payload,
       });
 
       if (!res.ok) {
@@ -360,6 +395,7 @@ export default function StudentApplicationPage() {
           name="student-application"
           action="/?application=success"
           method="POST"
+          encType="multipart/form-data"
           data-netlify="true"
           netlify-honeypot="bot-field"
           onSubmit={handleSubmit}
@@ -588,6 +624,72 @@ export default function StudentApplicationPage() {
                     <span className="text-sm text-[#1b1c1d] group-hover:text-[#a41034] transition-colors">{label}</span>
                   </label>
                 ))}
+              </div>
+
+              <div className="border border-gray-200 bg-gray-50 p-5 mb-8 space-y-5">
+                <h4 className="font-bold text-[#1b1c1d] text-sm uppercase tracking-widest">
+                  Upload Required Documents
+                </h4>
+                <p className="text-xs text-gray-500">
+                  Upload clear scans/photos. Total upload size should be 7.5MB or less.
+                </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                  <div>
+                    <label className={labelCls}>National ID / Passport (Front) *</label>
+                    <input
+                      type="file"
+                      name="id_front_image"
+                      accept="image/*,.pdf"
+                      required
+                      onChange={(e) => setUpload("idFront", e.target.files?.[0] ?? null)}
+                      className="block w-full text-sm text-gray-600 file:mr-4 file:py-2.5 file:px-4 file:border-0 file:bg-[#1b1c1d] file:text-white file:font-semibold hover:file:bg-black"
+                    />
+                  </div>
+                  <div>
+                    <label className={labelCls}>National ID / Passport (Back) *</label>
+                    <input
+                      type="file"
+                      name="id_back_image"
+                      accept="image/*,.pdf"
+                      required
+                      onChange={(e) => setUpload("idBack", e.target.files?.[0] ?? null)}
+                      className="block w-full text-sm text-gray-600 file:mr-4 file:py-2.5 file:px-4 file:border-0 file:bg-[#1b1c1d] file:text-white file:font-semibold hover:file:bg-black"
+                    />
+                  </div>
+                  <div>
+                    <label className={labelCls}>Secondary Certificate *</label>
+                    <input
+                      type="file"
+                      name="certificate_scan"
+                      accept="image/*,.pdf"
+                      required
+                      onChange={(e) => setUpload("certificateScan", e.target.files?.[0] ?? null)}
+                      className="block w-full text-sm text-gray-600 file:mr-4 file:py-2.5 file:px-4 file:border-0 file:bg-[#1b1c1d] file:text-white file:font-semibold hover:file:bg-black"
+                    />
+                  </div>
+                  <div>
+                    <label className={labelCls}>Passport Photo *</label>
+                    <input
+                      type="file"
+                      name="passport_photo"
+                      accept="image/*"
+                      required
+                      onChange={(e) => setUpload("passportPhoto", e.target.files?.[0] ?? null)}
+                      className="block w-full text-sm text-gray-600 file:mr-4 file:py-2.5 file:px-4 file:border-0 file:bg-[#1b1c1d] file:text-white file:font-semibold hover:file:bg-black"
+                    />
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className={labelCls}>Application Fee Receipt *</label>
+                    <input
+                      type="file"
+                      name="fee_receipt"
+                      accept="image/*,.pdf"
+                      required
+                      onChange={(e) => setUpload("feeReceipt", e.target.files?.[0] ?? null)}
+                      className="block w-full text-sm text-gray-600 file:mr-4 file:py-2.5 file:px-4 file:border-0 file:bg-[#1b1c1d] file:text-white file:font-semibold hover:file:bg-black"
+                    />
+                  </div>
+                </div>
               </div>
 
               <div className="bg-gray-50 border border-gray-200 p-6 mb-6">
