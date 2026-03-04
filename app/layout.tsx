@@ -20,6 +20,10 @@ export const metadata: Metadata = {
   description:
     "Starford International University (SIU) in Juba, South Sudan — empowering future leaders through academic excellence, research, and innovation.",
   keywords: "Starford University, South Sudan, Higher Education, Juba, Admissions 2026",
+  icons: {
+    icon: "/logo.jpeg",
+    apple: "/logo.jpeg",
+  },
 };
 
 export default function RootLayout({
