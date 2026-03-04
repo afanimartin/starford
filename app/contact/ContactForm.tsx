@@ -1,37 +1,29 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import { useRouter } from "next/navigation";
 
 type ContactFormStatus = "idle" | "submitting" | "success" | "error";
 
 export default function ContactForm() {
   const [status, setStatus] = useState<ContactFormStatus>("idle");
+  const router = useRouter();
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setStatus("submitting");
 
     const form = e.currentTarget;
-    const firstName = (form.querySelector('[name="first_name"]') as HTMLInputElement)?.value ?? "";
-    const lastName = (form.querySelector('[name="last_name"]') as HTMLInputElement)?.value ?? "";
-    const email = (form.querySelector('[name="email"]') as HTMLInputElement)?.value ?? "";
-    const phone = (form.querySelector('[name="phone"]') as HTMLInputElement)?.value ?? "";
-    const subject = (form.querySelector('[name="subject"]') as HTMLSelectElement)?.value ?? "";
-    const message = (form.querySelector('[name="message"]') as HTMLTextAreaElement)?.value ?? "";
-    const botField = (form.querySelector('[name="bot-field"]') as HTMLInputElement)?.value ?? "";
-
+    const formData = new FormData(form);
     const payload = new URLSearchParams();
-    payload.set("form-name", "contact");
-    payload.set("first_name", firstName);
-    payload.set("last_name", lastName);
-    payload.set("email", email);
-    payload.set("phone", phone);
-    payload.set("subject", subject);
-    payload.set("message", message);
-    if (botField) payload.set("bot-field", botField);
+    for (const [key, value] of formData.entries()) {
+      if (typeof value === "string") {
+        payload.append(key, value);
+      }
+    }
 
     try {
-      const res = await fetch("/__forms.html", {
+      const res = await fetch("/", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: payload.toString(),
@@ -41,6 +33,7 @@ export default function ContactForm() {
 
       form.reset();
       setStatus("success");
+      router.push("/?contact=success");
     } catch {
       setStatus("error");
     }
@@ -51,7 +44,7 @@ export default function ContactForm() {
   return (
     <form
       name="contact"
-      action="/__forms.html"
+      action="/?contact=success"
       method="POST"
       data-netlify="true"
       netlify-honeypot="bot-field"
