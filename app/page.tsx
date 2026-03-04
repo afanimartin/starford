@@ -12,9 +12,9 @@ export default function Home() {
       {/* 1. Stanford Gateway Bar */}
       <div className="w-full bg-[#1b1c1d] text-white py-2 px-6 lg:px-12 flex flex-col sm:flex-row justify-between items-center text-[12px] font-medium tracking-wide gap-2">
         <div className="flex gap-5 opacity-70">
-          <a href="https://starford.edu.ss/contact-us/" className="hover:opacity-100 transition-opacity">Contact</a>
-          <a href="https://starford.edu.ss/academic-calendar/" className="hover:opacity-100 transition-opacity">Academic Calendar</a>
-          <a href="https://starford.edu.ss/news/" className="hover:opacity-100 transition-opacity">News</a>
+          <a href="/contact" className="hover:opacity-100 transition-opacity">Contact</a>
+          <a href="/academic-calendar" className="hover:opacity-100 transition-opacity">Academic Calendar</a>
+          <a href="/news" className="hover:opacity-100 transition-opacity">News</a>
         </div>
         <div className="flex gap-5 uppercase tracking-wider text-[10px] font-bold">
           <span className="opacity-40 hidden md:block">Info For:</span>
@@ -53,7 +53,7 @@ export default function Home() {
 
         <div className="flex items-center gap-3">
           <a
-            href="https://starford.edu.ss/student-application-form/"
+            href="/admissions"
             className="hidden sm:block px-5 py-2 bg-[#a41034] text-white font-bold text-xs uppercase tracking-widest hover:bg-red-900 transition-colors"
           >
             Apply Now
@@ -87,7 +87,7 @@ export default function Home() {
               {item.label}
             </a>
           ))}
-          <a href="https://starford.edu.ss/student-application-form/" className="mx-6 my-4 px-5 py-3 bg-[#a41034] text-white font-bold text-xs uppercase tracking-widest text-center hover:bg-red-900 transition-colors">
+          <a href="/admissions" className="mx-6 my-4 px-5 py-3 bg-[#a41034] text-white font-bold text-xs uppercase tracking-widest text-center hover:bg-red-900 transition-colors">
             Apply Now
           </a>
         </div>
@@ -115,10 +115,10 @@ export default function Home() {
             Starford International University is pioneering a technology-first approach to higher education — equipping students with digital skills, data fluency, and innovative thinking to lead South Sudan's knowledge economy.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a href="https://starford.edu.ss/student-application-form/" className="px-9 py-4 bg-white text-[#1b1c1d] font-bold text-sm tracking-widest uppercase hover:bg-gray-100 transition-colors shadow-xl text-center">
+            <a href="/admissions" className="px-9 py-4 bg-white text-[#1b1c1d] font-bold text-sm tracking-widest uppercase hover:bg-gray-100 transition-colors shadow-xl text-center">
               Apply for 2026
             </a>
-            <a href="https://starford.edu.ss/the-starford-story/" className="px-9 py-4 border border-white text-white font-bold text-sm tracking-widest uppercase hover:bg-white hover:text-[#1b1c1d] transition-colors text-center">
+            <a href="/about" className="px-9 py-4 border border-white text-white font-bold text-sm tracking-widest uppercase hover:bg-white hover:text-[#1b1c1d] transition-colors text-center">
               Our Story
             </a>
           </div>
@@ -156,10 +156,10 @@ export default function Home() {
             </h2>
           </div>
           <div className="flex gap-4 flex-shrink-0">
-            <a href="https://starford.edu.ss/student-application-form/" className="px-8 py-3 bg-white text-[#a41034] font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition-colors shadow-md text-center">
+            <a href="/admissions" className="px-8 py-3 bg-white text-[#a41034] font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition-colors shadow-md text-center">
               Apply Now
             </a>
-            <a href="https://starford.edu.ss/call-for-admission-january-2026-intake/" className="px-8 py-3 border border-white/50 text-white font-bold text-sm uppercase tracking-widest hover:border-white transition-colors text-center">
+            <a href="/admissions" className="px-8 py-3 border border-white/50 text-white font-bold text-sm uppercase tracking-widest hover:border-white transition-colors text-center">
               Learn More
             </a>
           </div>
@@ -200,7 +200,7 @@ export default function Home() {
                 <p className="text-gray-500 text-xs uppercase tracking-widest mt-1">Founder & Chairman of the Board</p>
               </div>
               <div className="h-10 w-px bg-gray-200" />
-              <a href="https://starford.edu.ss/the-starford-story/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">
+              <a href="/about" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">
                 The Starford Story →
               </a>
             </div>
@@ -236,13 +236,13 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-6 lg:px-12 py-24">
         <div className="flex justify-between items-end border-b-2 border-[#1b1c1d] pb-4 mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-[#1b1c1d]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>In Focus</h2>
-          <a href="https://starford.edu.ss/news/" className="font-bold text-[#a41034] text-xs tracking-widest uppercase hover:underline">All News →</a>
+          <a href="/news" className="font-bold text-[#a41034] text-xs tracking-widest uppercase hover:underline">All News →</a>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
           {/* Main Feature */}
           <article className="md:col-span-7 group cursor-pointer">
-            <a href="https://starford.edu.ss/celebrating-the-academic-achievement-of-dr-matur-ater-majing/">
+            <a href="/news">
               <div className="overflow-hidden mb-6 aspect-[4/3] bg-gray-200">
                 <img
                   src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop"
@@ -263,7 +263,7 @@ export default function Home() {
           {/* Secondary Features */}
           <div className="md:col-span-5 flex flex-col gap-10">
             <article className="group cursor-pointer">
-              <a href="https://starford.edu.ss/demonstrating-that-disability-is-not-inability/">
+              <a href="/news">
                 <div className="overflow-hidden mb-4 aspect-video bg-gray-200">
                   <img
                     src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
@@ -279,7 +279,7 @@ export default function Home() {
             </article>
 
             <article className="group cursor-pointer pt-8 border-t border-gray-200">
-              <a href="https://starford.edu.ss/call-for-admission-january-2026-intake/">
+              <a href="/admissions">
                 <span className="text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-2 block">Admissions</span>
                 <h3 className="text-xl font-bold text-[#1b1c1d] group-hover:text-[#a41034] transition-colors leading-snug mb-3" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
                   Call for Admission — January 2026 Intake
@@ -291,7 +291,7 @@ export default function Home() {
             </article>
 
             <article className="group cursor-pointer pt-8 border-t border-gray-200">
-              <a href="https://starford.edu.ss/success-story-the-rise-pal-jock-jack/">
+              <a href="/news">
                 <span className="text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-2 block">Success Story</span>
                 <h3 className="text-xl font-bold text-[#1b1c1d] group-hover:text-[#a41034] transition-colors leading-snug" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
                   SIU Moot Court Team Wins 5th South Sudan IHL Competition
@@ -342,7 +342,7 @@ export default function Home() {
             ].map((card, i) => (
               <a
                 key={i}
-                href="https://starford.edu.ss/other-colleges/"
+                href="/academics"
                 className={`relative group overflow-hidden h-80 bg-gray-900 cursor-pointer ${i === 4 ? "md:col-span-2 lg:col-span-1" : ""}`}
               >
                 <img
@@ -371,7 +371,7 @@ export default function Home() {
                 <p className="text-white/75 text-sm max-w-xs mb-6 leading-relaxed">
                   Located in Juba, South Sudan. Experience our modern facilities and vibrant student life.
                 </p>
-                <a href="https://starford.edu.ss/contact-us/" className="px-6 py-2 border-2 border-white text-white font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-[#a41034] transition-colors">
+                <a href="/contact" className="px-6 py-2 border-2 border-white text-white font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-[#a41034] transition-colors">
                   Contact Us
                 </a>
               </div>
@@ -390,9 +390,7 @@ export default function Home() {
             "Looking back at how Starford International University has been able to shape me with leadership skills is just incredible."
           </blockquote>
           <p className="text-[#a41034] font-bold text-sm uppercase tracking-widest">— Starford Alumni · Pal Jock Jack</p>
-          <a href="https://starford.edu.ss/success-story-the-rise-pal-jock-jack/" className="inline-block mt-6 text-xs font-bold text-gray-400 hover:text-[#a41034] uppercase tracking-widest transition-colors">
-            Read the Full Story →
-          </a>
+
         </div>
       </section>
 
@@ -427,7 +425,7 @@ export default function Home() {
               <a href="https://www.instagram.com/explore/locations/1801633150108038/starford-international-university/" aria-label="Instagram" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded border border-white/10 flex items-center justify-center text-gray-500 hover:text-white hover:border-white/40 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" className="w-4 h-4"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/></svg>
               </a>
-              <a href="https://starford.edu.ss" aria-label="Website" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded border border-white/10 flex items-center justify-center text-gray-500 hover:text-white hover:border-white/40 transition-colors">
+              <a href="/" aria-label="Website" className="w-9 h-9 rounded border border-white/10 flex items-center justify-center text-gray-500 hover:text-white hover:border-white/40 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.8} stroke="currentColor" className="w-4 h-4"><path strokeLinecap="round" strokeLinejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253M3 12a8.959 8.959 0 0 1 .284-2.253" /></svg>
               </a>
             </div>
@@ -436,22 +434,22 @@ export default function Home() {
           <div>
             <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-6">Colleges</h4>
             <ul className="flex flex-col gap-4 text-gray-400 text-sm font-light">
-              <li><a href="https://starford.edu.ss/other-colleges/" className="hover:text-white transition-colors">Computer Science & IT</a></li>
-              <li><a href="https://starford.edu.ss/other-colleges/" className="hover:text-white transition-colors">Economics & Social Studies</a></li>
-              <li><a href="https://starford.edu.ss/other-colleges/" className="hover:text-white transition-colors">Humanities & Social Science</a></li>
-              <li><a href="https://starford.edu.ss/college-of-law/" className="hover:text-white transition-colors">College of Law</a></li>
-              <li><a href="https://starford.edu.ss/other-colleges/" className="hover:text-white transition-colors">Management Sciences</a></li>
+              <li><a href="/academics" className="hover:text-white transition-colors">Computer Science &amp; IT</a></li>
+              <li><a href="/academics" className="hover:text-white transition-colors">Economics &amp; Social Studies</a></li>
+              <li><a href="/academics" className="hover:text-white transition-colors">Humanities &amp; Social Science</a></li>
+              <li><a href="/academics" className="hover:text-white transition-colors">College of Law</a></li>
+              <li><a href="/academics" className="hover:text-white transition-colors">Management Sciences</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-bold uppercase tracking-widest text-xs mb-6">Quick Links</h4>
             <ul className="flex flex-col gap-4 text-gray-400 text-sm font-light">
-              <li><a href="https://starford.edu.ss/the-starford-story/" className="hover:text-white transition-colors">The Starford Story</a></li>
-              <li><a href="https://starford.edu.ss/leadership-and-management/" className="hover:text-white transition-colors">Leadership & Management</a></li>
-              <li><a href="https://starford.edu.ss/academic-calendar/" className="hover:text-white transition-colors">Academic Calendar</a></li>
-              <li><a href="https://starford.edu.ss/news/" className="hover:text-white transition-colors">News</a></li>
-              <li><a href="https://starford.edu.ss/student-application-form/" className="hover:text-white transition-colors">Apply Now</a></li>
+              <li><a href="/about" className="hover:text-white transition-colors">The Starford Story</a></li>
+              <li><a href="/leadership" className="hover:text-white transition-colors">Leadership &amp; Management</a></li>
+              <li><a href="/academic-calendar" className="hover:text-white transition-colors">Academic Calendar</a></li>
+              <li><a href="/news" className="hover:text-white transition-colors">News</a></li>
+              <li><a href="/admissions" className="hover:text-white transition-colors">Apply Now</a></li>
             </ul>
           </div>
 
@@ -476,7 +474,7 @@ export default function Home() {
                 <a href="tel:+211922281650" className="hover:text-white transition-colors text-xs">+211 922 281 650</a>
               </p>
             </address>
-            <a href="https://starford.edu.ss/student-application-form/" className="inline-block px-6 py-2.5 bg-[#a41034] text-white font-bold text-xs uppercase tracking-widest hover:bg-red-900 transition-colors">
+            <a href="/admissions" className="inline-block px-6 py-2.5 bg-[#a41034] text-white font-bold text-xs uppercase tracking-widest hover:bg-red-900 transition-colors">
               Make a Gift
             </a>
           </div>
@@ -488,9 +486,9 @@ export default function Home() {
             &copy; {new Date().getFullYear()} Starford International University. All rights reserved.
           </p>
           <div className="flex gap-6 text-gray-600 text-xs uppercase tracking-widest">
-            <a href="https://starford.edu.ss/contact-us/" className="hover:text-white transition-colors">Contact</a>
-            <a href="https://starford.edu.ss/the-starford-story/" className="hover:text-white transition-colors">About</a>
-            <a href="https://starford.edu.ss/student-application-form/" className="hover:text-white transition-colors">Admissions</a>
+            <a href="/contact" className="hover:text-white transition-colors">Contact</a>
+            <a href="/about" className="hover:text-white transition-colors">About</a>
+            <a href="/admissions" className="hover:text-white transition-colors">Admissions</a>
           </div>
         </div>
       </footer>

@@ -106,7 +106,7 @@ export default function AdmissionsPage() {
             Join a growing community of scholars, innovators, and leaders shaping the future of South Sudan and beyond.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
-            <a href="https://starford.edu.ss/student-application-form/" className="px-9 py-4 bg-white text-[#1b1c1d] font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition-colors text-center shadow-xl">
+            <a href="/admissions" className="px-9 py-4 bg-white text-[#1b1c1d] font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition-colors text-center shadow-xl">
               Apply Now
             </a>
             <a href="/academics" className="px-9 py-4 border border-white text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#1b1c1d] transition-colors text-center">
@@ -138,7 +138,7 @@ export default function AdmissionsPage() {
         <div>
           <div className="flex justify-between items-end border-b-2 border-[#1b1c1d] pb-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-[#1b1c1d]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>How to Apply</h2>
-            <a href="https://starford.edu.ss/student-application-form/" className="font-bold text-[#a41034] text-xs tracking-widest uppercase hover:underline">Start Application →</a>
+            <a href="/admissions" className="font-bold text-[#a41034] text-xs tracking-widest uppercase hover:underline">Start Application →</a>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-0">
@@ -163,7 +163,7 @@ export default function AdmissionsPage() {
           </div>
 
           <div className="mt-8 text-center">
-            <a href="https://starford.edu.ss/student-application-form/" className="inline-block px-12 py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest hover:bg-red-900 transition-colors shadow-lg">
+            <a href="/admissions" className="inline-block px-12 py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest hover:bg-red-900 transition-colors shadow-lg">
               Start Your Application
             </a>
           </div>
@@ -206,7 +206,7 @@ export default function AdmissionsPage() {
             <p className="text-white/75 leading-relaxed mb-6">
               Our admissions team is here to guide you through every step — from choosing the right programme to submitting your documents.
             </p>
-            <a href="https://starford.edu.ss/student-application-form/" className="inline-block px-8 py-3 bg-white text-[#a41034] font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition-colors">
+            <a href="/admissions" className="inline-block px-8 py-3 bg-white text-[#a41034] font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition-colors">
               Apply Online
             </a>
           </div>

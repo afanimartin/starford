@@ -156,7 +156,7 @@ export default function AboutPage() {
                   <p className="text-white/80 text-sm leading-relaxed mb-3">
                     Recognized by the <strong className="text-white">South Sudan Ministry of Higher Education, Science and Technology</strong> via Ministerial Order No. 23/2025 (October 2025).
                   </p>
-                  <a href="https://starford.edu.ss/the-starford-story/" className="text-white font-bold text-xs uppercase tracking-widest border-b border-white/40 pb-0.5 hover:border-white transition-colors">
+                  <a href="/about" className="text-white font-bold text-xs uppercase tracking-widest border-b border-white/40 pb-0.5 hover:border-white transition-colors">
                     Learn More →
                   </a>
                 </div>

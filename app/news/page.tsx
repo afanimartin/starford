@@ -13,7 +13,7 @@ const articles = [
     excerpt:
       "Starford International University invites applications for the January 2026 intake across all five colleges. Degree and diploma programmes available. Apply now — spaces are limited.",
     category: "Admissions",
-    href: "https://starford.edu.ss/call-for-admission-january-2026-intake/",
+    href: "/news",
     featured: true,
   },
   {
@@ -21,7 +21,7 @@ const articles = [
     excerpt:
       "Starford International University celebrates the outstanding academic achievement of Dr. Matur Ater Majing, Deputy VC for Academic Affairs, whose scholarly contributions continue to elevate the institution.",
     category: "Achievement",
-    href: "https://starford.edu.ss/celebrating-the-academic-achievement-of-dr-matur-ater-majing/",
+    href: "/news",
     featured: false,
   },
   {
@@ -29,7 +29,7 @@ const articles = [
     excerpt:
       "SIU Chancellor Prof. Kenneth Wayne Mutuma has been appointed as the new Chairperson of the Chartered Institute of Arbitrators (CIArb), a landmark recognition for the university.",
     category: "Leadership",
-    href: "https://starford.edu.ss/prof-kenneth-wayne-mutuma-appointed-as-the-new-chairperson-of-the-chartered-institute-of-arbitrators-ciarb/",
+    href: "/news",
     featured: false,
   },
   {
@@ -37,7 +37,7 @@ const articles = [
     excerpt:
       "Starford International University shines a spotlight on students who have overcome significant personal challenges to pursue and excel in higher education, proving that determination transcends disability.",
     category: "Community",
-    href: "https://starford.edu.ss/demonstrating-that-disability-is-not-inability/",
+    href: "/news",
     featured: false,
   },
   {
@@ -45,7 +45,7 @@ const articles = [
     excerpt:
       "SIU hosted a landmark conference on youth participation in inclusive governance, bringing together students, policymakers, and civil society leaders to chart a path for South Sudan's democratic future.",
     category: "Event",
-    href: "https://starford.edu.ss/enabling-youth-participation-in-inclusive-governance/",
+    href: "/news",
     featured: false,
   },
   {
@@ -53,7 +53,7 @@ const articles = [
     excerpt:
       "The SIU Moot Court team advanced to the semi-finals of the FIAE International Humanitarian Law (IHL) Moot Court Competition — building on their national championship victory.",
     category: "Achievement",
-    href: "https://starford.edu.ss/semi-finals-set-for-the-fiae-international-humanitarian-law-moot/",
+    href: "/news",
     featured: false,
   },
 ];
@@ -97,9 +97,9 @@ export default function NewsPage() {
           <h2 className="text-3xl md:text-4xl font-bold text-[#1b1c1d]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
             In Focus
           </h2>
-          <a href="https://starford.edu.ss/news/" target="_blank" rel="noopener noreferrer" className="font-bold text-[#a41034] text-xs tracking-widest uppercase hover:underline">
-            View all on starford.edu.ss →
-          </a>
+          <span className="font-bold text-[#a41034] text-xs tracking-widest uppercase">
+            All Stories
+          </span>
         </div>
 
         {/* Featured article */}
@@ -161,17 +161,6 @@ export default function NewsPage() {
           ))}
         </div>
 
-        {/* CTA to full external news */}
-        <div className="mt-16 text-center">
-          <a
-            href="https://starford.edu.ss/news/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block px-12 py-4 border-2 border-[#1b1c1d] text-[#1b1c1d] font-bold text-sm uppercase tracking-widest hover:bg-[#1b1c1d] hover:text-white transition-colors"
-          >
-            View All News on Starford.edu.ss
-          </a>
-        </div>
 
       </div>
 

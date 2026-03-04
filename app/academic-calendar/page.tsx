@@ -160,7 +160,7 @@ export default function AcademicCalendarPage() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
-            <a href="https://starford.edu.ss/student-application-form/" className="px-8 py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest hover:bg-red-900 transition-colors text-center">
+            <a href="/admissions" className="px-8 py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest hover:bg-red-900 transition-colors text-center">
               Apply Now
             </a>
             <a href="/admissions" className="px-8 py-4 border border-white text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#1b1c1d] transition-colors text-center">

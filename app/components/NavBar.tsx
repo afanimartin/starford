@@ -64,7 +64,7 @@ export default function NavBar() {
         {/* CTA + Hamburger */}
         <div className="flex items-center gap-3">
           <Link
-            href="https://starford.edu.ss/student-application-form/"
+            href="/admissions"
             className="hidden sm:inline-block px-5 py-2.5 bg-[#a41034] text-white font-bold text-xs uppercase tracking-widest hover:bg-red-900 transition-colors"
           >
             Apply Now
@@ -101,7 +101,7 @@ export default function NavBar() {
             </Link>
           ))}
           <Link
-            href="https://starford.edu.ss/student-application-form/"
+            href="/admissions"
             className="px-6 py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest text-center hover:bg-red-900 transition-colors"
           >
             Apply Now

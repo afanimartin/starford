@@ -204,7 +204,7 @@ export default function AcademicsPage() {
                 </div>
               </div>
 
-              <a href="https://starford.edu.ss/student-application-form/" className="mt-10 inline-block px-7 py-3 bg-[#1b1c1d] text-white font-bold text-xs uppercase tracking-widest hover:bg-[#a41034] transition-colors self-start">
+              <a href="/admissions" className="mt-10 inline-block px-7 py-3 bg-[#1b1c1d] text-white font-bold text-xs uppercase tracking-widest hover:bg-[#a41034] transition-colors self-start">
                 Apply to This College
               </a>
             </div>
