@@ -1,5 +1,7 @@
 import NavBar from "../components/NavBar";
 import type { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Academics — Starford International University",
@@ -120,7 +122,7 @@ export default function AcademicsPage() {
           Academic Programmes
         </h1>
         <p className="text-gray-400 mt-4 max-w-2xl mx-auto text-lg">
-          Designed to blend theory with practical experience — preparing students for the demands of today's dynamic world.
+          Designed to blend theory with practical experience — preparing students for the demands of today&apos;s dynamic world.
         </p>
       </div>
 
@@ -144,7 +146,7 @@ export default function AcademicsPage() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-24 space-y-24">
 
         {/* Intro */}
-        <div className="max-w-3xl">
+        <div className="max-w-3xl reveal reveal-x-left">
           <span className="text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-4 block">Our Approach</span>
           <p className="text-gray-600 text-lg leading-relaxed" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
             Starford International University is committed to developing skilled, ethical, and innovative professionals who can contribute meaningfully to South Sudan and the global community. Our programmes offer both <strong className="text-[#1b1c1d]">Bachelor (Honours) degrees</strong> and <strong className="text-[#1b1c1d]">Diploma qualifications</strong>, with on-campus and distance-learning modes available.
@@ -153,11 +155,17 @@ export default function AcademicsPage() {
 
         {/* College Cards */}
         {colleges.map((college, i) => (
-          <div key={college.slug} className={`grid grid-cols-1 lg:grid-cols-2 gap-0 border border-gray-200 overflow-hidden shadow-sm ${i % 2 === 1 ? "lg:grid-flow-dense" : ""}`}>
+          <div key={college.slug} className={`group grid grid-cols-1 lg:grid-cols-2 gap-0 border border-gray-200 overflow-hidden shadow-sm reveal stagger-${(i % 6) + 1} ${i % 2 === 1 ? "lg:grid-flow-dense" : ""}`}>
 
             {/* Image */}
-            <div className={`relative h-72 lg:h-auto min-h-[320px] ${i % 2 === 1 ? "lg:col-start-2" : ""}`}>
-              <img src={college.img} alt={college.name} className="absolute inset-0 w-full h-full object-cover" />
+            <div className={`relative h-72 lg:h-auto min-h-[320px] hover-shimmer ${i % 2 === 1 ? "lg:col-start-2" : ""}`}>
+              <Image
+                src={college.img}
+                alt={college.name}
+                fill
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-in-out group-hover:scale-105"
+              />
               <div className={`absolute inset-0 ${college.color} opacity-70`} />
               <div className="absolute inset-6 flex flex-col justify-end">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 text-white/60 mb-4">
@@ -204,9 +212,9 @@ export default function AcademicsPage() {
                 </div>
               </div>
 
-              <a href="/admissions" className="mt-10 inline-block px-7 py-3 bg-[#1b1c1d] text-white font-bold text-xs uppercase tracking-widest hover:bg-[#a41034] transition-colors self-start">
+              <Link href="/admissions" className="mt-10 inline-block px-7 py-3 bg-[#1b1c1d] text-white font-bold text-xs uppercase tracking-widest hover:bg-[#a41034] transition-colors self-start">
                 Apply to This College
-              </a>
+              </Link>
             </div>
           </div>
         ))}
@@ -215,7 +223,7 @@ export default function AcademicsPage() {
       {/* Footer strip */}
       <div className="w-full bg-[#111] border-t-4 border-[#a41034] py-8 px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-gray-500 text-xs">© {new Date().getFullYear()} Starford International University. All rights reserved.</p>
-        <a href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">← Back to Home</a>
+        <Link href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">← Back to Home</Link>
       </div>
     </div>
   );

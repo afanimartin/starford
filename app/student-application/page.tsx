@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import NavBar from "../components/NavBar";
+import Link from "next/link";
 
 const COLLEGES = [
   "College of Computer Science & Information Technology",
@@ -153,12 +154,12 @@ export default function StudentApplicationPage() {
             <strong>{form.email || form.phone}</strong> within 5–7 working days.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/" className="px-8 py-3 bg-[#a41034] text-white font-bold text-xs uppercase tracking-widest hover:bg-red-900 transition-colors">
+            <Link href="/" className="px-8 py-3 bg-[#a41034] text-white font-bold text-xs uppercase tracking-widest hover:bg-red-900 transition-colors">
               Back to Home
-            </a>
-            <a href="/admissions" className="px-8 py-3 border border-gray-300 text-[#1b1c1d] font-bold text-xs uppercase tracking-widest hover:border-[#1b1c1d] transition-colors">
+            </Link>
+            <Link href="/admissions" className="px-8 py-3 border border-gray-300 text-[#1b1c1d] font-bold text-xs uppercase tracking-widest hover:border-[#1b1c1d] transition-colors">
               Admissions Info
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -189,13 +190,13 @@ export default function StudentApplicationPage() {
       <div className="max-w-3xl mx-auto px-6 lg:px-8 py-16">
 
         {/* Notice banner */}
-        <div className="bg-amber-50 border-l-4 border-amber-500 p-4 mb-10 text-sm text-amber-800">
+        <div className="bg-amber-50 border-l-4 border-amber-500 p-4 mb-10 text-sm text-amber-800 reveal">
           <strong>Before you apply</strong> — ensure you have the following ready: Original Secondary Certificate,
           Proof of Age/Identity, Nationality/Passport, Two Passport-Sized Photos, and Application Fee.
         </div>
 
         {/* Step nav */}
-        <div className="flex gap-2 mb-10 overflow-x-auto pb-1">
+        <div className="flex gap-2 mb-10 overflow-x-auto pb-1 reveal">
           {["Personal", "Contact", "Education", "Programme", "Documents"].map((label, i) => (
             <button
               key={i}
@@ -218,7 +219,7 @@ export default function StudentApplicationPage() {
 
           {/* ── STEP 1: Personal Information ── */}
           {step === 1 && (
-            <div className="bg-white border border-gray-200 p-8 md:p-10">
+            <div className="bg-white border border-gray-200 p-8 md:p-10 reveal reveal-x-left">
               {sectionHeader(1, "Personal Information", "Enter your full legal name and personal details as they appear on your official documents.")}
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5 mb-5">
@@ -292,7 +293,7 @@ export default function StudentApplicationPage() {
 
           {/* ── STEP 2: Contact Information ── */}
           {step === 2 && (
-            <div className="bg-white border border-gray-200 p-8 md:p-10">
+            <div className="bg-white border border-gray-200 p-8 md:p-10 reveal reveal-x-right">
               {sectionHeader(2, "Contact Information", "Provide a working phone number and email — we'll use these to reach you about your application.")}
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-5">
@@ -318,7 +319,7 @@ export default function StudentApplicationPage() {
 
           {/* ── STEP 3: Educational Background ── */}
           {step === 3 && (
-            <div className="bg-white border border-gray-200 p-8 md:p-10">
+            <div className="bg-white border border-gray-200 p-8 md:p-10 reveal reveal-x-left">
               {sectionHeader(3, "Educational Background", "Provide details of your most recent secondary education and any prior tertiary study.")}
 
               <div className="mb-5">
@@ -358,7 +359,7 @@ export default function StudentApplicationPage() {
 
           {/* ── STEP 4: Programme Selection ── */}
           {step === 4 && (
-            <div className="bg-white border border-gray-200 p-8 md:p-10">
+            <div className="bg-white border border-gray-200 p-8 md:p-10 reveal reveal-x-right">
               {sectionHeader(4, "Programme Selection", "Choose the college, programme, and mode of study you wish to enrol in.")}
 
               <div className="mb-5">
@@ -409,7 +410,7 @@ export default function StudentApplicationPage() {
 
           {/* ── STEP 5: Documents & Declaration ── */}
           {step === 5 && (
-            <div className="bg-white border border-gray-200 p-8 md:p-10">
+            <div className="bg-white border border-gray-200 p-8 md:p-10 reveal reveal-x-left">
               {sectionHeader(5, "Documents & Declaration", "Confirm that you have the required documents ready to submit to the Admissions office.")}
 
               <p className="text-sm text-gray-600 mb-6">

@@ -1,5 +1,6 @@
 import NavBar from "../components/NavBar";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Contact Us — Starford International University",
@@ -57,7 +58,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
           {/* Left — Contact Info */}
-          <div className="lg:col-span-1 space-y-10">
+          <div className="lg:col-span-1 space-y-10 reveal reveal-x-left">
 
             {/* Call Us */}
             <div>
@@ -158,7 +159,7 @@ export default function ContactPage() {
           <div className="lg:col-span-2 space-y-10">
 
             {/* General Enquiry Form */}
-            <div className="bg-white border border-gray-200 p-10 shadow-sm">
+            <div className="bg-white border border-gray-200 p-10 shadow-sm reveal reveal-x-right">
               <div className="w-10 h-1 bg-[#a41034] mb-6" />
               <h2
                 className="text-2xl font-bold text-[#1b1c1d] mb-2"
@@ -255,7 +256,7 @@ export default function ContactPage() {
             </div>
 
             {/* Map embed */}
-            <div className="border border-gray-200 overflow-hidden shadow-sm">
+            <div className="border border-gray-200 overflow-hidden shadow-sm reveal reveal-x-right">
               <div className="bg-[#1b1c1d] px-6 py-4 flex items-center gap-3">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5 text-[#a41034]">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
@@ -284,9 +285,9 @@ export default function ContactPage() {
         <p className="text-gray-500 text-xs">
           © {new Date().getFullYear()} Starford International University. All rights reserved.
         </p>
-        <a href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">
+        <Link href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">
           ← Back to Home
-        </a>
+        </Link>
       </div>
     </div>
   );

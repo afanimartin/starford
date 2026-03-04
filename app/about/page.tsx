@@ -1,5 +1,6 @@
 import NavBar from "../components/NavBar";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "About Us — Starford International University",
@@ -70,7 +71,7 @@ export default function AboutPage() {
 
         {/* Story + Mission/Vision */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2 reveal reveal-x-left">
             <span className="text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-4 block">Our Story</span>
             <h2 className="text-2xl md:text-3xl font-bold text-[#1b1c1d] mb-6 leading-tight" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
               Born from a Vision to Transform South Sudan
@@ -92,14 +93,14 @@ export default function AboutPage() {
           </div>
 
           <div className="flex flex-col gap-8">
-            <div className="bg-white border border-gray-200 p-8 shadow-sm">
+            <div className="bg-white border border-gray-200 p-8 shadow-sm reveal reveal-x-right">
               <div className="w-10 h-1 bg-[#a41034] mb-5" />
               <h4 className="text-xs font-bold uppercase tracking-widest text-[#a41034] mb-3">Our Mission</h4>
               <p className="text-gray-700 leading-relaxed text-sm" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
                 To deliver high-quality education and training that responds to local realities and global aspirations, equipping students with the knowledge, skills, and character to innovate, lead, and serve.
               </p>
             </div>
-            <div className="bg-[#1b1c1d] p-8 shadow-sm">
+            <div className="bg-[#1b1c1d] p-8 shadow-sm reveal reveal-x-right">
               <div className="w-10 h-1 bg-[#a41034] mb-5" />
               <h4 className="text-xs font-bold uppercase tracking-widest text-[#a41034] mb-3">Our Vision</h4>
               <p className="text-gray-300 leading-relaxed text-sm" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
@@ -112,11 +113,11 @@ export default function AboutPage() {
         {/* Core Values + What We Offer */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
 
-          <div>
+          <div className="reveal">
             <span className="text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-6 block">Our Core Values</span>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {values.map((value, i) => (
-                <div key={i} className="bg-white border border-gray-200 p-6 hover:border-[#a41034] hover:shadow-md transition-all group">
+                <div key={i} className={`bg-white border border-gray-200 p-6 hover:border-[#a41034] hover:shadow-md transition-all group reveal stagger-${(i % 4) + 1}`}>
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-[#a41034] mb-4">
                     <path strokeLinecap="round" strokeLinejoin="round" d={value.icon} />
                   </svg>
@@ -128,7 +129,7 @@ export default function AboutPage() {
           </div>
 
           <div className="flex flex-col gap-8">
-            <div>
+            <div className="reveal">
               <span className="text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-6 block">What We Offer</span>
               <ul className="space-y-4">
                 {offerings.map((item, i) => (
@@ -144,7 +145,7 @@ export default function AboutPage() {
             </div>
 
             {/* Accreditation Callout */}
-            <div className="bg-[#a41034] p-8 text-white">
+            <div className="bg-[#a41034] p-8 text-white reveal">
               <div className="flex items-start gap-4">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 flex-shrink-0 mt-1 opacity-80">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
@@ -156,9 +157,9 @@ export default function AboutPage() {
                   <p className="text-white/80 text-sm leading-relaxed mb-3">
                     Recognized by the <strong className="text-white">South Sudan Ministry of Higher Education, Science and Technology</strong> via Ministerial Order No. 23/2025 (October 2025).
                   </p>
-                  <a href="/about" className="text-white font-bold text-xs uppercase tracking-widest border-b border-white/40 pb-0.5 hover:border-white transition-colors">
+                  <Link href="/about" className="text-white font-bold text-xs uppercase tracking-widest border-b border-white/40 pb-0.5 hover:border-white transition-colors">
                     Learn More →
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -170,7 +171,7 @@ export default function AboutPage() {
       {/* Footer strip */}
       <div className="w-full bg-[#111] border-t-4 border-[#a41034] py-8 px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-gray-500 text-xs">© {new Date().getFullYear()} Starford International University. All rights reserved.</p>
-        <a href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">← Back to Home</a>
+        <Link href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">← Back to Home</Link>
       </div>
 
     </div>

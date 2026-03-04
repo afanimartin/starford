@@ -1,6 +1,7 @@
 import Image from "next/image";
 import NavBar from "../components/NavBar";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Leadership & Management — Starford International University",
@@ -96,14 +97,14 @@ export default function LeadershipPage() {
           Leadership & Management
         </h1>
         <p className="text-gray-400 mt-4 max-w-xl mx-auto text-lg">
-          The visionary team guiding South Sudan's most ICT-enabled university.
+          The visionary team guiding South Sudan&apos;s most ICT-enabled university.
         </p>
       </div>
 
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-24">
 
         {/* University Leadership */}
-        <div className="mb-20">
+        <div className="mb-20 reveal">
           <div className="flex justify-between items-end border-b-2 border-[#1b1c1d] pb-4 mb-14">
             <h2
               className="text-3xl md:text-4xl font-bold text-[#1b1c1d]"
@@ -114,7 +115,7 @@ export default function LeadershipPage() {
           </div>
 
           {/* Founder — featured large */}
-          <div className="bg-[#1b1c1d] p-10 mb-10 flex flex-col md:flex-row items-center md:items-start gap-8">
+          <div className="bg-[#1b1c1d] p-10 mb-10 flex flex-col md:flex-row items-center md:items-start gap-8 reveal reveal-x-right">
             <div className="relative w-32 h-32 flex-shrink-0 overflow-hidden">
               <Image
                 src="/chairman.jpeg"
@@ -147,7 +148,7 @@ export default function LeadershipPage() {
             {leadership.slice(1).map((person, i) => (
               <div
                 key={i}
-                className="bg-white border border-gray-200 p-6 hover:border-[#a41034] hover:shadow-md transition-all group flex items-start gap-4"
+                className={`bg-white border border-gray-200 p-6 hover:border-[#a41034] hover:shadow-md transition-all group flex items-start gap-4 reveal stagger-${(i % 6) + 1}`}
               >
                 <div className="w-12 h-12 rounded-full bg-[#1b1c1d] flex items-center justify-center flex-shrink-0 group-hover:bg-[#a41034] transition-colors">
                   <span className="text-white font-bold text-lg" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
@@ -169,7 +170,7 @@ export default function LeadershipPage() {
         </div>
 
         {/* Deanship Board */}
-        <div>
+        <div className="reveal">
           <div className="flex justify-between items-end border-b-2 border-[#1b1c1d] pb-4 mb-14">
             <h2
               className="text-3xl md:text-4xl font-bold text-[#1b1c1d]"
@@ -183,7 +184,7 @@ export default function LeadershipPage() {
             {deanship.map((dean, i) => (
               <div
                 key={i}
-                className="border-b border-r border-gray-200 p-6 hover:bg-gray-50 transition-colors group"
+                className={`border-b border-r border-gray-200 p-6 hover:bg-gray-50 transition-colors group reveal stagger-${(i % 6) + 1}`}
               >
                 <div className="flex items-start gap-4">
                   <span className="text-[#a41034] font-bold text-2xl tabular-nums w-8 flex-shrink-0 mt-0.5">
@@ -214,9 +215,9 @@ export default function LeadershipPage() {
         <p className="text-gray-500 text-xs">
           © {new Date().getFullYear()} Starford International University. All rights reserved.
         </p>
-        <a href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">
+        <Link href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">
           ← Back to Home
-        </a>
+        </Link>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import NavBar from "../components/NavBar";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Academic Calendar 2025 — Starford International University",
@@ -107,7 +108,7 @@ export default function AcademicCalendarPage() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-24 space-y-20">
 
         {/* Semester 1 */}
-        <div>
+        <div className="reveal reveal-x-left">
           <div className="flex justify-between items-end border-b-2 border-[#1b1c1d] pb-4 mb-8">
             <div>
               <span className="text-[#a41034] font-bold text-[10px] tracking-widest uppercase block mb-1">January Intake</span>
@@ -121,7 +122,7 @@ export default function AcademicCalendarPage() {
         </div>
 
         {/* Semester 2 */}
-        <div>
+        <div className="reveal reveal-x-right">
           <div className="flex justify-between items-end border-b-2 border-[#1b1c1d] pb-4 mb-8">
             <div>
               <span className="text-[#a41034] font-bold text-[10px] tracking-widest uppercase block mb-1">Mid-Year Semester</span>
@@ -135,7 +136,7 @@ export default function AcademicCalendarPage() {
         </div>
 
         {/* Semester 3 */}
-        <div>
+        <div className="reveal reveal-x-left">
           <div className="flex justify-between items-end border-b-2 border-[#1b1c1d] pb-4 mb-8">
             <div>
               <span className="text-[#a41034] font-bold text-[10px] tracking-widest uppercase block mb-1">October Intake</span>
@@ -149,7 +150,7 @@ export default function AcademicCalendarPage() {
         </div>
 
         {/* Apply CTA */}
-        <div className="bg-[#1b1c1d] p-10 md:p-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+        <div className="bg-[#1b1c1d] p-10 md:p-16 flex flex-col md:flex-row items-start md:items-center justify-between gap-8 reveal">
           <div>
             <span className="text-[#a41034] font-bold text-[10px] tracking-widest uppercase block mb-3">January 2026 Intake — Now Open</span>
             <h3 className="text-2xl md:text-3xl font-bold text-white" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
@@ -160,12 +161,12 @@ export default function AcademicCalendarPage() {
             </p>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 flex-shrink-0">
-            <a href="/admissions" className="px-8 py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest hover:bg-red-900 transition-colors text-center">
+            <Link href="/student-application" className="px-8 py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest hover:bg-red-900 transition-colors text-center">
               Apply Now
-            </a>
-            <a href="/admissions" className="px-8 py-4 border border-white text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#1b1c1d] transition-colors text-center">
+            </Link>
+            <Link href="/admissions" className="px-8 py-4 border border-white text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#1b1c1d] transition-colors text-center">
               Admissions Info
-            </a>
+            </Link>
           </div>
         </div>
 
@@ -174,7 +175,7 @@ export default function AcademicCalendarPage() {
       {/* Footer */}
       <div className="w-full bg-[#111] border-t-4 border-[#a41034] py-8 px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-gray-500 text-xs">© {new Date().getFullYear()} Starford International University. All rights reserved.</p>
-        <a href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">← Back to Home</a>
+        <Link href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">← Back to Home</Link>
       </div>
     </div>
   );

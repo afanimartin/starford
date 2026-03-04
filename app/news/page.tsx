@@ -1,5 +1,7 @@
 import NavBar from "../components/NavBar";
 import type { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "News — Starford International University",
@@ -113,14 +115,16 @@ export default function NewsPage() {
           href={featured.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="group block bg-[#1b1c1d] mb-12 hover:bg-[#111] transition-colors overflow-hidden"
+          className="group block bg-[#1b1c1d] mb-12 hover:bg-[#111] transition-colors overflow-hidden reveal"
         >
           <div className="flex flex-col md:flex-row items-stretch">
             {"image" in featured && featured.image && (
-              <div className="md:w-72 lg:w-96 flex-shrink-0 overflow-hidden">
-                <img
+              <div className="relative md:w-72 lg:w-96 h-64 md:h-[420px] flex-shrink-0 overflow-hidden">
+                <Image
                   src={featured.image as string}
                   alt={featured.title}
+                  fill
+                  sizes="(min-width: 1024px) 384px, (min-width: 768px) 288px, 100vw"
                   className="w-full h-64 md:h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
                 />
               </div>
@@ -154,13 +158,15 @@ export default function NewsPage() {
               href={article.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group border-b border-r border-gray-200 hover:bg-gray-50 transition-colors flex flex-col"
+              className={`group border-b border-r border-gray-200 hover:bg-gray-50 transition-colors flex flex-col reveal stagger-${(i % 6) + 1}`}
             >
               {"image" in article && article.image && (
-                <div className="overflow-hidden aspect-video bg-gray-200">
-                  <img
+                <div className="relative overflow-hidden aspect-video bg-gray-200">
+                  <Image
                     src={article.image as string}
                     alt={article.title}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
                   />
                 </div>
@@ -193,7 +199,7 @@ export default function NewsPage() {
       {/* Footer */}
       <div className="w-full bg-[#111] border-t-4 border-[#a41034] py-8 px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-gray-500 text-xs">© {new Date().getFullYear()} Starford International University. All rights reserved.</p>
-        <a href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">← Back to Home</a>
+        <Link href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">← Back to Home</Link>
       </div>
     </div>
   );

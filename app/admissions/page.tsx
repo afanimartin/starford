@@ -1,5 +1,7 @@
 import NavBar from "../components/NavBar";
 import type { Metadata } from "next";
+import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Admissions — Starford International University",
@@ -90,9 +92,12 @@ export default function AdmissionsPage() {
       {/* Hero — Harvard-style immersive */}
       <header className="relative w-full min-h-[60vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 bg-black">
-          <img
+          <Image
             src="/grad-procession.jpg"
             alt="Starford students"
+            fill
+            sizes="100vw"
+            priority
             className="w-full h-full object-cover opacity-50"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
@@ -106,12 +111,12 @@ export default function AdmissionsPage() {
             Join a growing community of scholars, innovators, and leaders shaping the future of South Sudan and beyond.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
-            <a href="/admissions" className="px-9 py-4 bg-white text-[#1b1c1d] font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition-colors text-center shadow-xl">
+            <Link href="/student-application" className="px-9 py-4 bg-white text-[#1b1c1d] font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition-colors text-center shadow-xl">
               Apply Now
-            </a>
-            <a href="/academics" className="px-9 py-4 border border-white text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#1b1c1d] transition-colors text-center">
+            </Link>
+            <Link href="/academics" className="px-9 py-4 border border-white text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#1b1c1d] transition-colors text-center">
               Explore Programmes
-            </a>
+            </Link>
           </div>
         </div>
       </header>
@@ -135,15 +140,15 @@ export default function AdmissionsPage() {
       <div className="max-w-7xl mx-auto px-6 lg:px-12 py-24 space-y-28">
 
         {/* How to Apply — Harvard-style numbered steps */}
-        <div>
+        <div className="reveal">
           <div className="flex justify-between items-end border-b-2 border-[#1b1c1d] pb-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-[#1b1c1d]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>How to Apply</h2>
-            <a href="/admissions" className="font-bold text-[#a41034] text-xs tracking-widest uppercase hover:underline">Start Application →</a>
+            <Link href="/admissions" className="font-bold text-[#a41034] text-xs tracking-widest uppercase hover:underline">Start Application →</Link>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-0">
             {steps.map((step, i) => (
-              <div key={i} className={`relative p-8 border-r border-gray-200 last:border-r-0 flex flex-col ${i % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
+              <div key={i} className={`relative p-8 border-r border-gray-200 last:border-r-0 flex flex-col reveal stagger-${Math.min(i + 1, 6)} ${i % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
                 <span className="text-[#a41034] font-bold text-4xl mb-5 leading-none" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
                   {step.num}
                 </span>
@@ -163,14 +168,14 @@ export default function AdmissionsPage() {
           </div>
 
           <div className="mt-8 text-center">
-            <a href="/admissions" className="inline-block px-12 py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest hover:bg-red-900 transition-colors shadow-lg">
+            <Link href="/student-application" className="inline-block px-12 py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest hover:bg-red-900 transition-colors shadow-lg">
               Start Your Application
-            </a>
+            </Link>
           </div>
         </div>
 
         {/* Entry Requirements — two column */}
-        <div>
+        <div className="reveal">
           <div className="flex justify-between items-end border-b-2 border-[#1b1c1d] pb-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-[#1b1c1d]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>Entry Requirements</h2>
           </div>
@@ -198,7 +203,7 @@ export default function AdmissionsPage() {
 
         {/* Contact Admissions */}
         <div className="bg-[#a41034] p-10 md:p-16 text-white grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
+          <div className="reveal reveal-x-left">
             <span className="text-white/60 font-bold text-[10px] tracking-widest uppercase mb-3 block">Get In Touch</span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
               Talk to Our Admissions Team
@@ -206,11 +211,11 @@ export default function AdmissionsPage() {
             <p className="text-white/75 leading-relaxed mb-6">
               Our admissions team is here to guide you through every step — from choosing the right programme to submitting your documents.
             </p>
-            <a href="/admissions" className="inline-block px-8 py-3 bg-white text-[#a41034] font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition-colors">
+            <Link href="/student-application" className="inline-block px-8 py-3 bg-white text-[#a41034] font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition-colors">
               Apply Online
-            </a>
+            </Link>
           </div>
-          <div className="space-y-4 text-sm">
+          <div className="space-y-4 text-sm reveal reveal-x-right">
             <div className="flex items-start gap-4">
               <svg className="w-5 h-5 mt-0.5 text-white/60 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" />
@@ -245,7 +250,7 @@ export default function AdmissionsPage() {
         </div>
 
         {/* FAQs */}
-        <div>
+        <div className="reveal">
           <div className="flex justify-between items-end border-b-2 border-[#1b1c1d] pb-4 mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-[#1b1c1d]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>Frequently Asked Questions</h2>
           </div>
@@ -266,7 +271,7 @@ export default function AdmissionsPage() {
       {/* Footer strip */}
       <div className="w-full bg-[#111] border-t-4 border-[#a41034] py-8 px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-4">
         <p className="text-gray-500 text-xs">© {new Date().getFullYear()} Starford International University. All rights reserved.</p>
-        <a href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">← Back to Home</a>
+        <Link href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">← Back to Home</Link>
       </div>
     </div>
   );

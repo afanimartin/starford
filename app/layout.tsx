@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import ScrollProgress from "./components/ScrollProgress";
+import RevealObserver from "./components/RevealObserver";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -33,7 +35,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        <ScrollProgress />
+        <RevealObserver />
+        {children}
+      </body>
     </html>
   );
 }
