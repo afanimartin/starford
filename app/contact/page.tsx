@@ -171,7 +171,15 @@ export default function ContactPage() {
                 Fill in the form below and a member of our team will get back to you within 2 business days.
               </p>
 
-              <form action="https://formsubmit.co/info@starford.edu.ss" method="POST" className="space-y-6">
+              <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                className="space-y-6"
+              >
+                <input type="hidden" name="form-name" value="contact" />
+                <input type="hidden" name="bot-field" />
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">First Name *</label>
