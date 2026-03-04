@@ -71,31 +71,31 @@ body {
   transform: none;
 }
 
-.motion-ready .reveal {
+.motion-ready .reveal[data-reveal-ready="true"] {
   opacity: 0;
   transform: translateY(36px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
-.motion-ready .reveal.visible {
+.motion-ready .reveal[data-reveal-ready="true"].visible {
   opacity: 1;
   transform: translateY(0);
 }
 
-.motion-ready .reveal-x-right {
+.motion-ready .reveal-x-right[data-reveal-ready="true"] {
   opacity: 0;
   transform: translateX(56px);
   transition: opacity 0.85s ease, transform 0.85s ease;
 }
 
-.motion-ready .reveal-x-left {
+.motion-ready .reveal-x-left[data-reveal-ready="true"] {
   opacity: 0;
   transform: translateX(-56px);
   transition: opacity 0.85s ease, transform 0.85s ease;
 }
 
-.motion-ready .reveal-x-right.visible,
-.motion-ready .reveal-x-left.visible {
+.motion-ready .reveal-x-right[data-reveal-ready="true"].visible,
+.motion-ready .reveal-x-left[data-reveal-ready="true"].visible {
   opacity: 1;
   transform: translateX(0);
 }

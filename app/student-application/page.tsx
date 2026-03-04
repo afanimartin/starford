@@ -93,16 +93,92 @@ export default function StudentApplicationPage() {
   const [form, setForm] = useState<FormData>(INITIAL);
   const [submitted, setSubmitted] = useState(false);
   const [step, setStep] = useState(1);
+  const [stepErrors, setStepErrors] = useState<string[]>([]);
   const TOTAL_STEPS = 5;
 
-  const set = (field: keyof Omit<FormData, "docs" | "declaration">, value: string) =>
+  const set = (field: keyof Omit<FormData, "docs" | "declaration">, value: string) => {
+    setStepErrors([]);
     setForm((f) => ({ ...f, [field]: value }));
+  };
 
-  const setDoc = (key: keyof FormData["docs"], value: boolean) =>
+  const setDoc = (key: keyof FormData["docs"], value: boolean) => {
+    setStepErrors([]);
     setForm((f) => ({ ...f, docs: { ...f.docs, [key]: value } }));
+  };
+
+  const isBlank = (value: string) => value.trim().length === 0;
+
+  const validateStep = (stepNumber: number): string[] => {
+    const errors: string[] = [];
+
+    if (stepNumber === 1) {
+      if (isBlank(form.firstName)) errors.push("First Name is required.");
+      if (isBlank(form.lastName)) errors.push("Last Name is required.");
+      if (isBlank(form.dob)) errors.push("Date of Birth is required.");
+      if (isBlank(form.gender)) errors.push("Gender is required.");
+      if (isBlank(form.nationality)) errors.push("Nationality is required.");
+      if (isBlank(form.maritalStatus)) errors.push("Marital Status is required.");
+      if (isBlank(form.county)) errors.push("Home County / State is required.");
+    }
+
+    if (stepNumber === 2) {
+      if (isBlank(form.phone)) errors.push("Phone Number is required.");
+      if (isBlank(form.address)) errors.push("Residential Address is required.");
+    }
+
+    if (stepNumber === 3) {
+      if (isBlank(form.schoolName)) errors.push("Name of Secondary School is required.");
+      if (isBlank(form.gradYear)) errors.push("Year of Graduation is required.");
+      if (isBlank(form.certificate)) errors.push("Certificate Obtained is required.");
+    }
+
+    if (stepNumber === 4) {
+      if (isBlank(form.intake)) errors.push("Intake is required.");
+      if (isBlank(form.college)) errors.push("College / Faculty is required.");
+      if (isBlank(form.programme)) errors.push("Programme / Course is required.");
+      if (isBlank(form.modeOfStudy)) errors.push("Mode of Study is required.");
+    }
+
+    if (stepNumber === 5) {
+      const docsComplete = Object.values(form.docs).every(Boolean);
+      if (!docsComplete) errors.push("Please confirm all required documents are ready.");
+      if (!form.declaration) errors.push("You must accept the declaration before submitting.");
+    }
+
+    return errors;
+  };
+
+  const goToStep = (targetStep: number) => {
+    if (targetStep <= step) {
+      setStep(targetStep);
+      setStepErrors([]);
+      return;
+    }
+
+    for (let s = 1; s < targetStep; s += 1) {
+      const errors = validateStep(s);
+      if (errors.length > 0) {
+        setStep(s);
+        setStepErrors(errors);
+        return;
+      }
+    }
+
+    setStep(targetStep);
+    setStepErrors([]);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    for (let s = 1; s <= TOTAL_STEPS; s += 1) {
+      const errors = validateStep(s);
+      if (errors.length > 0) {
+        setStep(s);
+        setStepErrors(errors);
+        return;
+      }
+    }
+    setStepErrors([]);
     setSubmitted(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -201,7 +277,7 @@ export default function StudentApplicationPage() {
             <button
               key={i}
               type="button"
-              onClick={() => setStep(i + 1)}
+              onClick={() => goToStep(i + 1)}
               className={`flex-shrink-0 px-4 py-2 text-[11px] font-bold uppercase tracking-widest border transition-colors ${
                 step === i + 1
                   ? "bg-[#a41034] border-[#a41034] text-white"
@@ -214,6 +290,17 @@ export default function StudentApplicationPage() {
             </button>
           ))}
         </div>
+
+        {stepErrors.length > 0 && (
+          <div className="mb-6 border border-red-200 bg-red-50 p-4 text-sm text-red-900">
+            <p className="font-semibold mb-2">Please complete the following before continuing:</p>
+            <ul className="list-disc pl-5 space-y-1">
+              {stepErrors.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-0">
 
@@ -446,7 +533,10 @@ export default function StudentApplicationPage() {
 
               <label className="flex items-start gap-3 cursor-pointer mb-8">
                 <input type="checkbox" required checked={form.declaration}
-                  onChange={(e) => setForm((f) => ({ ...f, declaration: e.target.checked }))}
+                  onChange={(e) => {
+                    setStepErrors([]);
+                    setForm((f) => ({ ...f, declaration: e.target.checked }));
+                  }}
                   className="accent-[#a41034] w-5 h-5 flex-shrink-0 mt-0.5" />
                 <span className="text-sm text-gray-600 leading-relaxed">
                   I declare that the information provided in this application is true, complete, and accurate to the best of
@@ -467,14 +557,24 @@ export default function StudentApplicationPage() {
           {/* Navigation buttons */}
           <div className="flex justify-between pt-6">
             {step > 1 ? (
-              <button type="button" onClick={() => setStep(step - 1)}
+              <button type="button" onClick={() => goToStep(step - 1)}
                 className="px-8 py-3 border border-gray-300 text-[#1b1c1d] font-bold text-xs uppercase tracking-widest hover:border-[#1b1c1d] transition-colors">
                 ← Previous
               </button>
             ) : <div />}
 
             {step < TOTAL_STEPS && (
-              <button type="button" onClick={() => setStep(step + 1)}
+              <button
+                type="button"
+                onClick={() => {
+                  const errors = validateStep(step);
+                  if (errors.length > 0) {
+                    setStepErrors(errors);
+                    return;
+                  }
+                  setStepErrors([]);
+                  setStep(step + 1);
+                }}
                 className="px-8 py-3 bg-[#1b1c1d] text-white font-bold text-xs uppercase tracking-widest hover:bg-black transition-colors">
                 Next →
               </button>
