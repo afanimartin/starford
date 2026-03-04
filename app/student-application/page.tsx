@@ -255,7 +255,7 @@ export default function StudentApplicationPage() {
     }
 
     try {
-      const res = await fetch("/", {
+      const res = await fetch("/__forms.html", {
         method: "POST",
         body: payload,
       });
@@ -393,7 +393,7 @@ export default function StudentApplicationPage() {
 
         <form
           name="student-application"
-          action="/?application=success"
+          action="/__forms.html"
           method="POST"
           encType="multipart/form-data"
           data-netlify="true"
