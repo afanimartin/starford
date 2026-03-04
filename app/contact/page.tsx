@@ -1,6 +1,7 @@
 import NavBar from "../components/NavBar";
 import type { Metadata } from "next";
 import Link from "next/link";
+import ContactForm from "./ContactForm";
 
 export const metadata: Metadata = {
   title: "Contact Us — Starford International University",
@@ -171,97 +172,7 @@ export default function ContactPage() {
                 Fill in the form below and a member of our team will get back to you within 2 business days.
               </p>
 
-              <form
-                name="contact"
-                action="/__forms.html"
-                method="POST"
-                data-netlify="true"
-                netlify-honeypot="bot-field"
-                className="space-y-6"
-              >
-                <input type="hidden" name="form-name" value="contact" />
-                <input type="hidden" name="bot-field" />
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">First Name *</label>
-                    <input
-                      type="text"
-                      name="first_name"
-                      required
-                      className="w-full border border-gray-300 px-4 py-3 text-sm text-[#1b1c1d] focus:outline-none focus:border-[#a41034] transition-colors"
-                      placeholder="e.g. Deng"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Last Name *</label>
-                    <input
-                      type="text"
-                      name="last_name"
-                      required
-                      className="w-full border border-gray-300 px-4 py-3 text-sm text-[#1b1c1d] focus:outline-none focus:border-[#a41034] transition-colors"
-                      placeholder="e.g. Akol"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Email Address *</label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      className="w-full border border-gray-300 px-4 py-3 text-sm text-[#1b1c1d] focus:outline-none focus:border-[#a41034] transition-colors"
-                      placeholder="you@email.com"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Phone Number</label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      className="w-full border border-gray-300 px-4 py-3 text-sm text-[#1b1c1d] focus:outline-none focus:border-[#a41034] transition-colors"
-                      placeholder="+211 9XX XXX XXX"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Subject *</label>
-                  <select
-                    name="subject"
-                    required
-                    className="w-full border border-gray-300 px-4 py-3 text-sm text-[#1b1c1d] focus:outline-none focus:border-[#a41034] transition-colors bg-white"
-                  >
-                    <option value="">Select a subject</option>
-                    <option>Admissions Enquiry</option>
-                    <option>Programme Information</option>
-                    <option>Fee & Financial Aid</option>
-                    <option>Distance Learning</option>
-                    <option>Partnership & Collaboration</option>
-                    <option>Media & Press</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-
-                <div>
-                  <label className="block text-xs font-bold uppercase tracking-widest text-gray-500 mb-2">Message *</label>
-                  <textarea
-                    name="message"
-                    required
-                    rows={5}
-                    className="w-full border border-gray-300 px-4 py-3 text-sm text-[#1b1c1d] focus:outline-none focus:border-[#a41034] transition-colors resize-none"
-                    placeholder="Write your message here..."
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full sm:w-auto px-12 py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest hover:bg-red-900 transition-colors"
-                >
-                  Send Message
-                </button>
-              </form>
+              <ContactForm />
             </div>
 
             {/* Map embed */}
