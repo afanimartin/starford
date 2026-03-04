@@ -92,6 +92,7 @@ const INITIAL: FormData = {
 export default function StudentApplicationPage() {
   const [form, setForm] = useState<FormData>(INITIAL);
   const [submitted, setSubmitted] = useState(false);
+  const [submitState, setSubmitState] = useState<"idle" | "submitting" | "error">("idle");
   const [step, setStep] = useState(1);
   const [stepErrors, setStepErrors] = useState<string[]>([]);
   const TOTAL_STEPS = 5;
@@ -168,7 +169,7 @@ export default function StudentApplicationPage() {
     setStepErrors([]);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     for (let s = 1; s <= TOTAL_STEPS; s += 1) {
       const errors = validateStep(s);
@@ -178,9 +179,62 @@ export default function StudentApplicationPage() {
         return;
       }
     }
+
     setStepErrors([]);
-    setSubmitted(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setSubmitState("submitting");
+
+    const payload = new URLSearchParams();
+    payload.set("form-name", "student-application");
+    payload.set("first_name", form.firstName);
+    payload.set("middle_name", form.middleName);
+    payload.set("last_name", form.lastName);
+    payload.set("date_of_birth", form.dob);
+    payload.set("gender", form.gender);
+    payload.set("nationality", form.nationality);
+    payload.set("marital_status", form.maritalStatus);
+    payload.set("religion", form.religion);
+    payload.set("county", form.county);
+    payload.set("phone", form.phone);
+    payload.set("email", form.email);
+    payload.set("address", form.address);
+    payload.set("school_name", form.schoolName);
+    payload.set("graduation_year", form.gradYear);
+    payload.set("certificate", form.certificate);
+    payload.set("previous_university", form.prevUniversity);
+    payload.set("intake", form.intake);
+    payload.set("college", form.college);
+    payload.set("programme", form.programme);
+    payload.set("mode_of_study", form.modeOfStudy);
+    payload.set("doc_certificate", form.docs.certificate ? "yes" : "no");
+    payload.set("doc_identity", form.docs.identity ? "yes" : "no");
+    payload.set("doc_passport", form.docs.passport ? "yes" : "no");
+    payload.set("doc_photos", form.docs.photos ? "yes" : "no");
+    payload.set("doc_fee", form.docs.fee ? "yes" : "no");
+    payload.set("declaration", form.declaration ? "yes" : "no");
+
+    const botFieldInput = e.currentTarget.querySelector('input[name="bot-field"]') as HTMLInputElement | null;
+    const botFieldValue = botFieldInput?.value?.trim() ?? "";
+    if (botFieldValue) {
+      payload.set("bot-field", botFieldValue);
+    }
+
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: payload.toString(),
+      });
+
+      if (!res.ok) {
+        throw new Error("Submission failed");
+      }
+
+      setSubmitState("idle");
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch {
+      setSubmitState("error");
+    }
   };
 
   const inputCls =
@@ -302,7 +356,21 @@ export default function StudentApplicationPage() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit} className="space-y-0">
+        <form
+          name="student-application"
+          action="/?application=success"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          onSubmit={handleSubmit}
+          className="space-y-0"
+        >
+          <input type="hidden" name="form-name" value="student-application" />
+          <p className="hidden" aria-hidden="true">
+            <label>
+              Do not fill this out: <input name="bot-field" />
+            </label>
+          </p>
 
           {/* ── STEP 1: Personal Information ── */}
           {step === 1 && (
@@ -547,10 +615,16 @@ export default function StudentApplicationPage() {
 
               <button
                 type="submit"
-                className="w-full py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest hover:bg-red-900 transition-colors shadow-lg"
+                disabled={submitState === "submitting"}
+                className="w-full py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest hover:bg-red-900 transition-colors shadow-lg disabled:opacity-60 disabled:cursor-not-allowed"
               >
-                Submit Application →
+                {submitState === "submitting" ? "Submitting Application..." : "Submit Application →"}
               </button>
+              {submitState === "error" && (
+                <p className="mt-4 rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-900">
+                  Submission failed. Please try again.
+                </p>
+              )}
             </div>
           )}
 
