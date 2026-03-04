@@ -15,6 +15,7 @@ const articles = [
     category: "Admissions",
     href: "/news",
     featured: true,
+    image: "/january-intake.jpg",
   },
   {
     title: "Celebrating the Academic Achievement of Dr. Matur Ater Majing",
@@ -23,6 +24,7 @@ const articles = [
     category: "Achievement",
     href: "/news",
     featured: false,
+    image: "/chancellor.jpg",
   },
   {
     title: "Prof. Kenneth Wayne Mutuma appointed Chairperson of CIArb",
@@ -31,6 +33,7 @@ const articles = [
     category: "Leadership",
     href: "/news",
     featured: false,
+    image: "/prof-kenneth.jpg",
   },
   {
     title: "Demonstrating that 'Disability is Not Inability'",
@@ -39,6 +42,7 @@ const articles = [
     category: "Community",
     href: "/news",
     featured: false,
+    image: "/disability.jpg",
   },
   {
     title: "SIU Conference: Enabling Youth Participation in Inclusive Governance",
@@ -47,6 +51,7 @@ const articles = [
     category: "Event",
     href: "/news",
     featured: false,
+    image: "/youth-conference.jpg",
   },
   {
     title: "Semi-Finals Set for the FIAE International Humanitarian Law Moot",
@@ -55,6 +60,7 @@ const articles = [
     category: "Achievement",
     href: "/news",
     featured: false,
+    image: "/moot-court.jpg",
   },
 ];
 
@@ -107,10 +113,19 @@ export default function NewsPage() {
           href={featured.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="group block bg-[#1b1c1d] p-10 md:p-14 mb-12 hover:bg-[#111] transition-colors"
+          className="group block bg-[#1b1c1d] mb-12 hover:bg-[#111] transition-colors overflow-hidden"
         >
-          <div className="flex items-start gap-6">
-            <div className="flex-1">
+          <div className="flex flex-col md:flex-row items-stretch">
+            {"image" in featured && featured.image && (
+              <div className="md:w-72 lg:w-96 flex-shrink-0 overflow-hidden">
+                <img
+                  src={featured.image as string}
+                  alt={featured.title}
+                  className="w-full h-64 md:h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                />
+              </div>
+            )}
+            <div className="flex-1 p-10 md:p-14">
               <span className={`inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-widest mb-5 ${categoryColors[featured.category]}`}>
                 {featured.category}
               </span>
@@ -139,24 +154,35 @@ export default function NewsPage() {
               href={article.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="group border-b border-r border-gray-200 p-8 hover:bg-gray-50 transition-colors flex flex-col"
+              className="group border-b border-r border-gray-200 hover:bg-gray-50 transition-colors flex flex-col"
             >
-              <span className={`inline-block self-start px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest mb-4 ${categoryColors[article.category]}`}>
-                {article.category}
-              </span>
-              <h3
-                className="font-bold text-[#1b1c1d] text-lg leading-snug mb-3 group-hover:text-[#a41034] transition-colors flex-grow"
-                style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-              >
-                {article.title}
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3">{article.excerpt}</p>
-              <span className="inline-flex items-center gap-1.5 text-[#a41034] font-bold text-xs uppercase tracking-widest mt-auto group-hover:gap-3 transition-all">
-                Read More
-                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
-                </svg>
-              </span>
+              {"image" in article && article.image && (
+                <div className="overflow-hidden aspect-video bg-gray-200">
+                  <img
+                    src={article.image as string}
+                    alt={article.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                  />
+                </div>
+              )}
+              <div className="p-8 flex flex-col flex-grow">
+                <span className={`inline-block self-start px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest mb-4 ${categoryColors[article.category]}`}>
+                  {article.category}
+                </span>
+                <h3
+                  className="font-bold text-[#1b1c1d] text-lg leading-snug mb-3 group-hover:text-[#a41034] transition-colors flex-grow"
+                  style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
+                >
+                  {article.title}
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3">{article.excerpt}</p>
+                <span className="inline-flex items-center gap-1.5 text-[#a41034] font-bold text-xs uppercase tracking-widest mt-auto group-hover:gap-3 transition-all">
+                  Read More
+                  <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                  </svg>
+                </span>
+              </div>
             </a>
           ))}
         </div>

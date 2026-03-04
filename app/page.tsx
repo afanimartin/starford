@@ -21,7 +21,7 @@ export default function Home() {
           <a href="#" className="hover:text-[#a41034] transition-colors">Students</a>
           <a href="#" className="hover:text-[#a41034] transition-colors">Faculty & Staff</a>
           <a href="#" className="hover:text-[#a41034] transition-colors">Alumni</a>
-          <a href="#" className="hover:text-[#a41034] transition-colors">Donors</a>
+          <a href="#" className="hover:text-[#a41034] transition-colors">Partners</a>
         </div>
       </div>
 
@@ -97,7 +97,7 @@ export default function Home() {
       <header className="relative w-full h-[90vh] min-h-[620px] flex items-end justify-center overflow-hidden">
         <div className="absolute inset-0 bg-black z-0">
           <img
-            src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=2070&auto=format&fit=crop"
+            src="/grad-procession.jpg"
             alt="Starford Campus, Juba"
             className="w-full h-full object-cover opacity-55"
           />
@@ -245,7 +245,7 @@ export default function Home() {
             <a href="/news">
               <div className="overflow-hidden mb-6 aspect-[4/3] bg-gray-200">
                 <img
-                  src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?q=80&w=2070&auto=format&fit=crop"
+                  src="/chancellor.jpg"
                   alt="Dr. Matur Ater Majing"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
                 />
@@ -266,7 +266,7 @@ export default function Home() {
               <a href="/news">
                 <div className="overflow-hidden mb-4 aspect-video bg-gray-200">
                   <img
-                    src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
+                    src="/disability.jpg"
                     alt="Disability is not Inability"
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
                   />
@@ -474,8 +474,8 @@ export default function Home() {
                 <a href="tel:+211922281650" className="hover:text-white transition-colors text-xs">+211 922 281 650</a>
               </p>
             </address>
-            <a href="/admissions" className="inline-block px-6 py-2.5 bg-[#a41034] text-white font-bold text-xs uppercase tracking-widest hover:bg-red-900 transition-colors">
-              Make a Gift
+            <a href="/contact" className="inline-block px-6 py-2.5 bg-[#a41034] text-white font-bold text-xs uppercase tracking-widest hover:bg-red-900 transition-colors">
+              Donate
             </a>
           </div>
 

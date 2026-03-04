@@ -91,7 +91,7 @@ export default function AdmissionsPage() {
       <header className="relative w-full min-h-[60vh] flex items-end overflow-hidden">
         <div className="absolute inset-0 bg-black">
           <img
-            src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=2070&auto=format&fit=crop"
+            src="/grad-procession.jpg"
             alt="Starford students"
             className="w-full h-full object-cover opacity-50"
           />
