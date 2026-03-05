@@ -105,7 +105,7 @@ export default async function AdmissionsPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pb-16 w-full">
-          <span className="inline-block text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-4 bg-white/10 px-3 py-1">{admissionsCopy.hero.badge}</span>
+          <span className="inline-block py-1.5 px-5 bg-[var(--brand-red)] text-white text-[10px] font-bold tracking-[0.25em] uppercase mb-4">{admissionsCopy.hero.badge}</span>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight max-w-3xl" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
             {admissionsCopy.hero.title}
           </h1>
@@ -113,7 +113,7 @@ export default async function AdmissionsPage() {
             {admissionsCopy.hero.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
-            <Link href="/student-application" className="px-9 py-4 bg-white text-[#1b1c1d] font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition-colors text-center shadow-xl">
+            <Link href="/student-application" className="px-9 py-4 bg-[var(--brand-blue)] text-white font-bold text-sm uppercase tracking-widest hover:bg-[#0048c8] transition-colors text-center shadow-xl">
               Apply Now
             </Link>
             <Link href="/academics" className="px-9 py-4 border border-white text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#1b1c1d] transition-colors text-center">
@@ -200,7 +200,7 @@ export default async function AdmissionsPage() {
         </div>
 
         {/* Contact Admissions */}
-        <div className="bg-[#a41034] p-10 md:p-16 text-white grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+        <div className="bg-[#0b4f8a] rounded-2xl shadow-2xl border border-blue-300/40 p-10 md:p-16 text-white grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div className="reveal reveal-x-left">
             <span className="text-white/60 font-bold text-[10px] tracking-widest uppercase mb-3 block">Get In Touch</span>
             <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
@@ -209,7 +209,7 @@ export default async function AdmissionsPage() {
             <p className="text-white/75 leading-relaxed mb-6">
               Our admissions team is here to guide you through every step — from choosing the right programme to submitting your documents.
             </p>
-            <Link href="/student-application" className="inline-block px-8 py-3 bg-white text-[#a41034] font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition-colors">
+            <Link href="/student-application" className="inline-block px-8 py-3 bg-[var(--brand-blue)] text-white font-bold text-sm uppercase tracking-widest hover:bg-[#0048c8] transition-colors">
               Apply Online
             </Link>
           </div>

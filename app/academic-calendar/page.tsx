@@ -79,7 +79,7 @@ export default function AcademicCalendarPage() {
 
       {/* Hero */}
       <div className="w-full bg-[#1b1c1d] py-20 px-6 lg:px-12 text-center">
-        <span className="inline-block text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-4">
+        <span className="inline-block py-1.5 px-5 bg-[var(--brand-red)] text-white text-[10px] font-bold tracking-[0.25em] uppercase mb-4">
           Academic Year 2025
         </span>
         <h1
@@ -164,7 +164,7 @@ export default function AcademicCalendarPage() {
             <Link href="/student-application" className="px-8 py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest hover:bg-red-900 transition-colors text-center">
               Apply Now
             </Link>
-            <Link href="/admissions" className="px-8 py-4 border border-white text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#1b1c1d] transition-colors text-center">
+            <Link href="/admissions" className="px-8 py-4 bg-[var(--brand-blue)] text-white font-bold text-sm uppercase tracking-widest hover:bg-[#0048c8] transition-colors text-center">
               Admissions Info
             </Link>
           </div>

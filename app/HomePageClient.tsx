@@ -240,7 +240,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/admissions" className="px-9 py-4 bg-white text-[#1b1c1d] font-bold text-sm tracking-widest uppercase hover:bg-gray-100 transition-all shadow-xl text-center hover:scale-105 transform duration-200">
+            <Link href="/admissions" className="px-9 py-4 bg-[var(--brand-blue)] text-white font-bold text-sm tracking-widest uppercase hover:bg-[#0048c8] transition-all shadow-xl text-center hover:scale-105 transform duration-200">
               {homeCopy.hero.primaryCtaLabel}
             </Link>
             <Link href="/about" className="px-9 py-4 border border-white text-white font-bold text-sm tracking-widest uppercase hover:bg-white hover:text-[#1b1c1d] transition-all text-center hover:scale-105 transform duration-200">
@@ -281,7 +281,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
             </h2>
           </div>
           <div className="flex gap-4 flex-shrink-0">
-            <Link href="/student-application" className="px-8 py-3 bg-white text-[var(--brand-blue)] font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition-all hover:scale-105 transform duration-200 shadow-md text-center">
+            <Link href="/student-application" className="px-8 py-3 bg-[var(--brand-blue)] text-white font-bold text-sm uppercase tracking-widest hover:bg-[#0048c8] transition-all hover:scale-105 transform duration-200 shadow-md text-center">
               Apply Now
             </Link>
             <Link href="/admissions" className="px-8 py-3 border border-[var(--brand-yellow)]/70 text-white font-bold text-sm uppercase tracking-widest hover:border-[var(--brand-yellow)] hover:bg-[var(--brand-yellow)] hover:text-[#0d2340] transition-all text-center">
