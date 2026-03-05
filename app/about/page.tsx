@@ -1,6 +1,7 @@
 import NavBar from "../components/NavBar";
 import type { Metadata } from "next";
 import Link from "next/link";
+import aboutCopy from "@/content/site/about.json";
 
 export const metadata: Metadata = {
   title: "About Us — Starford International University",
@@ -58,12 +59,12 @@ export default function AboutPage() {
 
       {/* Page Hero */}
       <div className="w-full bg-[#1b1c1d] py-20 px-6 lg:px-12 text-center">
-        <span className="inline-block text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-4">Founded 2015 · Accredited 2025</span>
+        <span className="inline-block text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-4">{aboutCopy.heroBadge}</span>
         <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-          The Starford Story
+          {aboutCopy.heroTitle}
         </h1>
         <p className="text-gray-400 mt-4 max-w-xl mx-auto text-lg">
-          Born from a bold vision to transform higher education in South Sudan.
+          {aboutCopy.heroSubtitle}
         </p>
       </div>
 
@@ -72,9 +73,9 @@ export default function AboutPage() {
         {/* Story + Mission/Vision */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
           <div className="lg:col-span-2 reveal reveal-x-left">
-            <span className="text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-4 block">Our Story</span>
+            <span className="text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-4 block">{aboutCopy.storyKicker}</span>
             <h2 className="text-2xl md:text-3xl font-bold text-[#1b1c1d] mb-6 leading-tight" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-              Born from a Vision to Transform South Sudan
+              {aboutCopy.storyTitle}
             </h2>
             <div className="space-y-4 text-gray-600 leading-relaxed text-[16px]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
               <p>
@@ -95,16 +96,16 @@ export default function AboutPage() {
           <div className="flex flex-col gap-8">
             <div className="bg-white border border-gray-200 p-8 shadow-sm reveal reveal-x-right">
               <div className="w-10 h-1 bg-[#a41034] mb-5" />
-              <h4 className="text-xs font-bold uppercase tracking-widest text-[#a41034] mb-3">Our Mission</h4>
+              <h4 className="text-xs font-bold uppercase tracking-widest text-[#a41034] mb-3">{aboutCopy.mission.title}</h4>
               <p className="text-gray-700 leading-relaxed text-sm" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-                To deliver high-quality education and training that responds to local realities and global aspirations, equipping students with the knowledge, skills, and character to innovate, lead, and serve.
+                {aboutCopy.mission.body}
               </p>
             </div>
             <div className="bg-[#1b1c1d] p-8 shadow-sm reveal reveal-x-right">
               <div className="w-10 h-1 bg-[#a41034] mb-5" />
-              <h4 className="text-xs font-bold uppercase tracking-widest text-[#a41034] mb-3">Our Vision</h4>
+              <h4 className="text-xs font-bold uppercase tracking-widest text-[#a41034] mb-3">{aboutCopy.vision.title}</h4>
               <p className="text-gray-300 leading-relaxed text-sm" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-                To be recognized across South Sudan and beyond as a leading institution of academic excellence, social impact, and sustainable development — pioneering ICT-enabled education for the region.
+                {aboutCopy.vision.body}
               </p>
             </div>
           </div>

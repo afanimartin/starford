@@ -2,69 +2,13 @@ import NavBar from "../components/NavBar";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { getNewsArticles } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "News — Starford International University",
   description:
     "Latest news, achievements, and events from Starford International University — South Sudan's most ICT-enabled university.",
 };
-
-const articles = [
-  {
-    title: "Call for Admission — January 2026 Intake",
-    excerpt:
-      "Starford International University invites applications for the January 2026 intake across all five colleges. Degree and diploma programmes available. Apply now — spaces are limited.",
-    category: "Admissions",
-    href: "/news",
-    featured: true,
-    image: "/january-intake.jpg",
-  },
-  {
-    title: "Celebrating the Academic Achievement of Dr. Matur Ater Majing",
-    excerpt:
-      "Starford International University celebrates the outstanding academic achievement of Dr. Matur Ater Majing, Deputy VC for Academic Affairs, whose scholarly contributions continue to elevate the institution.",
-    category: "Achievement",
-    href: "/news",
-    featured: false,
-    image: "/chancellor.jpg",
-  },
-  {
-    title: "Prof. Kenneth Wayne Mutuma appointed Chairperson of CIArb",
-    excerpt:
-      "SIU Chancellor Prof. Kenneth Wayne Mutuma has been appointed as the new Chairperson of the Chartered Institute of Arbitrators (CIArb), a landmark recognition for the university.",
-    category: "Leadership",
-    href: "/news",
-    featured: false,
-    image: "/prof-kenneth.jpg",
-  },
-  {
-    title: "Demonstrating that 'Disability is Not Inability'",
-    excerpt:
-      "Starford International University shines a spotlight on students who have overcome significant personal challenges to pursue and excel in higher education, proving that determination transcends disability.",
-    category: "Community",
-    href: "/news",
-    featured: false,
-    image: "/disability.jpg",
-  },
-  {
-    title: "SIU Conference: Enabling Youth Participation in Inclusive Governance",
-    excerpt:
-      "SIU hosted a landmark conference on youth participation in inclusive governance, bringing together students, policymakers, and civil society leaders to chart a path for South Sudan's democratic future.",
-    category: "Event",
-    href: "/news",
-    featured: false,
-    image: "/youth-conference.jpg",
-  },
-  {
-    title: "Semi-Finals Set for the FIAE International Humanitarian Law Moot",
-    excerpt:
-      "The SIU Moot Court team advanced to the semi-finals of the FIAE International Humanitarian Law (IHL) Moot Court Competition — building on their national championship victory.",
-    category: "Achievement",
-    href: "/news",
-    featured: false,
-    image: "/moot-court.jpg",
-  },
-];
 
 const categoryColors: Record<string, string> = {
   Admissions: "bg-[#a41034] text-white",
@@ -74,9 +18,23 @@ const categoryColors: Record<string, string> = {
   Event: "bg-amber-800 text-white",
 };
 
-export default function NewsPage() {
-  const featured = articles.find((a) => a.featured)!;
-  const rest = articles.filter((a) => !a.featured);
+export default async function NewsPage() {
+  const articles = await getNewsArticles();
+  const featured = articles.find((a) => a.featured) ?? articles[0];
+  if (!featured) {
+    return (
+      <div className="min-h-screen bg-[#fcfcfc]" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+        <NavBar />
+        <div className="max-w-3xl mx-auto px-6 py-24 text-center">
+          <h1 className="text-3xl font-bold text-[#1b1c1d]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+            News &amp; Updates
+          </h1>
+          <p className="text-gray-500 mt-4">No articles published yet.</p>
+        </div>
+      </div>
+    );
+  }
+  const rest = articles.filter((a) => a !== featured);
 
   return (
     <div className="min-h-screen bg-[#fcfcfc]" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
@@ -130,7 +88,7 @@ export default function NewsPage() {
               </div>
             )}
             <div className="flex-1 p-10 md:p-14">
-              <span className={`inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-widest mb-5 ${categoryColors[featured.category]}`}>
+              <span className={`inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-widest mb-5 ${categoryColors[featured.category] ?? "bg-[#1b1c1d] text-white"}`}>
                 {featured.category}
               </span>
               <h2
@@ -172,7 +130,7 @@ export default function NewsPage() {
                 </div>
               )}
               <div className="p-8 flex flex-col flex-grow">
-                <span className={`inline-block self-start px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest mb-4 ${categoryColors[article.category]}`}>
+                <span className={`inline-block self-start px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest mb-4 ${categoryColors[article.category] ?? "bg-[#1b1c1d] text-white"}`}>
                   {article.category}
                 </span>
                 <h3

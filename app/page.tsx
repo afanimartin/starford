@@ -4,24 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import NavBar from "./components/NavBar";
+import homeCopy from "@/content/site/home.json";
 
-const SLIDES = [
-  {
-    headline: "Education for Sustainable Development",
-    image: "/grad-procession.jpg",
-    sub: "Equipping students with digital skills, data fluency, and innovative thinking to lead South Sudan\u2019s knowledge economy.",
-  },
-  {
-    headline: "Empowering South Sudan\u2019s Future Leaders",
-    image: "/law-class.jpg",
-    sub: "World-class faculty. Rigorous programmes. A community committed to peace, justice, and national development.",
-  },
-  {
-    headline: "Where Knowledge Meets Purpose",
-    image: "/graduate-alumni.jpg",
-    sub: "From the Nile to new nations \u2014 our graduates carry the torch of learning into every corner of South Sudan and beyond.",
-  },
-];
+const SLIDES = homeCopy.slides;
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
@@ -182,7 +167,7 @@ export default function Home() {
 
           {/* ── Accreditation badge — pinned on every slide ── */}
           <span className="inline-block py-1.5 px-5 bg-[var(--brand-red)] text-white text-[10px] font-bold tracking-[0.25em] uppercase mb-8 animate-fade-in-up">
-            Ministerially Accredited &middot; Est. 2015 &middot; Juba, South Sudan
+            {homeCopy.hero.badge}
           </span>
 
           <div aria-live="polite" aria-atomic="true">
@@ -252,10 +237,10 @@ export default function Home() {
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Link href="/admissions" className="px-9 py-4 bg-white text-[#1b1c1d] font-bold text-sm tracking-widest uppercase hover:bg-gray-100 transition-all shadow-xl text-center hover:scale-105 transform duration-200">
-              Apply for 2026
+              {homeCopy.hero.primaryCtaLabel}
             </Link>
             <Link href="/about" className="px-9 py-4 border border-white text-white font-bold text-sm tracking-widest uppercase hover:bg-white hover:text-[#1b1c1d] transition-all text-center hover:scale-105 transform duration-200">
-              Our Story
+              {homeCopy.hero.secondaryCtaLabel}
             </Link>
           </div>
         </div>

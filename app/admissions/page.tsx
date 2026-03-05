@@ -2,6 +2,7 @@ import NavBar from "../components/NavBar";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import admissionsCopy from "@/content/site/admissions.json";
 
 export const metadata: Metadata = {
   title: "Admissions — Starford International University",
@@ -103,12 +104,12 @@ export default function AdmissionsPage() {
           <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
         </div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 pb-16 w-full">
-          <span className="inline-block text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-4 bg-white/10 px-3 py-1">January 2026 Intake — Now Open</span>
+          <span className="inline-block text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-4 bg-white/10 px-3 py-1">{admissionsCopy.hero.badge}</span>
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight max-w-3xl" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-            Begin Your Journey at Starford
+            {admissionsCopy.hero.title}
           </h1>
           <p className="text-gray-300 mt-4 max-w-xl text-lg leading-relaxed">
-            Join a growing community of scholars, innovators, and leaders shaping the future of South Sudan and beyond.
+            {admissionsCopy.hero.subtitle}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 mt-8">
             <Link href="/student-application" className="px-9 py-4 bg-white text-[#1b1c1d] font-bold text-sm uppercase tracking-widest hover:bg-gray-100 transition-colors text-center shadow-xl">
@@ -124,11 +125,7 @@ export default function AdmissionsPage() {
       {/* Key Dates Bar */}
       <div className="w-full bg-[#a41034]">
         <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/20">
-          {[
-            { label: "Application Period", value: "Now Open" },
-            { label: "Intake", value: "January 2026" },
-            { label: "Mode of Study", value: "On-Campus & Distance" },
-          ].map((item, i) => (
+          {admissionsCopy.keyDates.map((item, i) => (
             <div key={i} className="py-5 px-8 text-center">
               <p className="text-white font-bold text-lg">{item.value}</p>
               <p className="text-white/60 text-xs uppercase tracking-widest font-bold mt-0.5">{item.label}</p>

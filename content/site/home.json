@@ -1,0 +1,24 @@
+{
+  "hero": {
+    "badge": "Ministerially Accredited · Est. 2015 · Juba, South Sudan",
+    "primaryCtaLabel": "Apply for 2026",
+    "secondaryCtaLabel": "Our Story"
+  },
+  "slides": [
+    {
+      "headline": "Education for Sustainable Development",
+      "image": "/grad-procession.jpg",
+      "sub": "Equipping students with digital skills, data fluency, and innovative thinking to lead South Sudan's knowledge economy."
+    },
+    {
+      "headline": "Empowering South Sudan's Future Leaders",
+      "image": "/law-class.jpg",
+      "sub": "World-class faculty. Rigorous programmes. A community committed to peace, justice, and national development."
+    },
+    {
+      "headline": "Where Knowledge Meets Purpose",
+      "image": "/graduate-alumni.jpg",
+      "sub": "From the Nile to new nations - our graduates carry the torch of learning into every corner of South Sudan and beyond."
+    }
+  ]
+}

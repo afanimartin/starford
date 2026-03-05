@@ -1,0 +1,21 @@
+{
+  "hero": {
+    "badge": "January 2026 Intake - Now Open",
+    "title": "Begin Your Journey at Starford",
+    "subtitle": "Join a growing community of scholars, innovators, and leaders shaping the future of South Sudan and beyond."
+  },
+  "keyDates": [
+    {
+      "label": "Application Period",
+      "value": "Now Open"
+    },
+    {
+      "label": "Intake",
+      "value": "January 2026"
+    },
+    {
+      "label": "Mode of Study",
+      "value": "On-Campus & Distance"
+    }
+  ]
+}
