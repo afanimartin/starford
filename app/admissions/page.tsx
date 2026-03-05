@@ -2,7 +2,7 @@ import NavBar from "../components/NavBar";
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import admissionsCopy from "@/content/site/admissions.json";
+import { getAdmissionsCopy } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Admissions — Starford International University",
@@ -84,7 +84,8 @@ const faqs = [
   },
 ];
 
-export default function AdmissionsPage() {
+export default async function AdmissionsPage() {
+  const admissionsCopy = await getAdmissionsCopy();
   return (
     <div className="min-h-screen bg-[#fcfcfc]" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
 

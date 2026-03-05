@@ -1,7 +1,7 @@
 import NavBar from "../components/NavBar";
 import type { Metadata } from "next";
 import Link from "next/link";
-import aboutCopy from "@/content/site/about.json";
+import { getAboutCopy } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About Us — Starford International University",
@@ -51,7 +51,8 @@ const offerings = [
   },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const aboutCopy = await getAboutCopy();
   return (
     <div className="min-h-screen bg-[#fcfcfc]" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
 
