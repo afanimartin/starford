@@ -41,7 +41,7 @@ export default function ContactPage() {
 
       {/* Page Hero */}
       <div className="w-full bg-[#1b1c1d] py-20 px-6 lg:px-12 text-center">
-        <span className="inline-block text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-4">
+        <span className="inline-block py-1.5 px-5 bg-[var(--brand-red)] text-white text-[10px] font-bold tracking-[0.25em] uppercase mb-4">
           Juba, South Sudan
         </span>
         <h1

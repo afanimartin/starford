@@ -117,7 +117,7 @@ export default function AcademicsPage() {
 
       {/* Hero */}
       <div className="w-full bg-[#1b1c1d] py-20 px-6 lg:px-12 text-center">
-        <span className="inline-block text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-4">5 Colleges · Degree & Diploma Programmes</span>
+        <span className="inline-block py-1.5 px-5 bg-[var(--brand-red)] text-white text-[10px] font-bold tracking-[0.25em] uppercase mb-4">5 Colleges · Degree & Diploma Programmes</span>
         <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
           Academic Programmes
         </h1>
@@ -212,7 +212,7 @@ export default function AcademicsPage() {
                 </div>
               </div>
 
-              <Link href="/admissions" className="mt-10 inline-block px-7 py-3 bg-[#1b1c1d] text-white font-bold text-xs uppercase tracking-widest hover:bg-[#a41034] transition-colors self-start">
+              <Link href="/admissions" className="mt-10 inline-block px-7 py-3 bg-[var(--brand-blue)] text-[var(--brand-yellow)] font-bold text-xs uppercase tracking-widest hover:bg-[#a41034] hover:text-white transition-colors self-start">
                 Apply to This College
               </Link>
             </div>

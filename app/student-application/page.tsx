@@ -279,7 +279,7 @@ export default function StudentApplicationPage() {
 
   const sectionHeader = (num: number, title: string, subtitle: string) => (
     <div className="mb-8">
-      <span className="inline-block text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-2">
+      <span className="inline-block py-1.5 px-5 bg-[var(--brand-red)] text-white text-[10px] font-bold tracking-[0.25em] uppercase mb-2">
         Section {num} of {TOTAL_STEPS}
       </span>
       <h2 className="text-2xl md:text-3xl font-bold text-[#1b1c1d] tracking-tight"
@@ -337,7 +337,7 @@ export default function StudentApplicationPage() {
 
       {/* Hero */}
       <div className="w-full bg-[#1b1c1d] py-16 px-6 lg:px-12 text-center">
-        <span className="inline-block text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-4">
+        <span className="inline-block py-1.5 px-5 bg-[var(--brand-red)] text-white text-[10px] font-bold tracking-[0.25em] uppercase mb-4">
           January 2026 Intake — Applications Open
         </span>
         <h1 className="text-4xl md:text-5xl font-bold text-white leading-tight"

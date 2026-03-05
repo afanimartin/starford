@@ -87,7 +87,7 @@ export default function LeadershipPage() {
 
       {/* Page Hero */}
       <div className="w-full bg-[#1b1c1d] py-20 px-6 lg:px-12 text-center">
-        <span className="inline-block text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-4">
+        <span className="inline-block py-1.5 px-5 bg-[var(--brand-red)] text-white text-[10px] font-bold tracking-[0.25em] uppercase mb-4">
           Starford International University
         </span>
         <h1
@@ -118,7 +118,7 @@ export default function LeadershipPage() {
           <div className="bg-[#1b1c1d] p-10 mb-10 flex flex-col md:flex-row items-center md:items-start gap-8 reveal reveal-x-right">
             <div className="relative w-32 h-32 flex-shrink-0 overflow-hidden">
               <Image
-                src="/chairman.jpeg"
+                src="/chairman1.jpeg"
                 alt="Hon. Dium Cyer Cyer Deng"
                 fill
                 className="object-cover object-top"

@@ -179,6 +179,20 @@ body {
   animation: slideInFromLeft 0.55s ease both;
 }
 
+@keyframes heroZoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+.hero-zoom-in {
+  animation: heroZoomIn 5s ease-out forwards;
+  transform-origin: center center;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
