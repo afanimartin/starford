@@ -146,17 +146,17 @@ export default async function AdmissionsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-5 gap-0">
             {steps.map((step, i) => (
-              <div key={i} className={`relative p-8 border-r border-gray-200 last:border-r-0 flex flex-col reveal stagger-${Math.min(i + 1, 6)} ${i % 2 === 0 ? "bg-white" : "bg-gray-50"}`}>
-                <span className="text-[#a41034] font-bold text-4xl mb-5 leading-none" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+              <div key={i} className={`group relative p-8 border-r border-gray-200 last:border-r-0 flex flex-col reveal stagger-${Math.min(i + 1, 6)} ${i % 2 === 0 ? "bg-white" : "bg-gray-50"} hover:bg-[#a41034] hover:border-[#a41034] transition-colors`}>
+                <span className="text-[#a41034] group-hover:text-white font-bold text-4xl mb-5 leading-none transition-colors" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
                   {step.num}
                 </span>
-                <h3 className="font-bold text-[#1b1c1d] text-base mb-3 leading-snug" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+                <h3 className="font-bold text-[#1b1c1d] text-base mb-3 leading-snug group-hover:text-white transition-colors" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
                   {step.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed flex-grow">{step.desc}</p>
+                <p className="text-gray-500 text-sm leading-relaxed flex-grow group-hover:text-white/85 transition-colors">{step.desc}</p>
                 {i < steps.length - 1 && (
-                  <div className="absolute -right-3 top-1/2 -translate-y-1/2 hidden md:flex w-6 h-6 bg-[#a41034] rounded-full items-center justify-center z-10">
-                    <svg className="w-3 h-3 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <div className="absolute -right-3 top-1/2 -translate-y-1/2 hidden md:flex w-6 h-6 bg-[#a41034] rounded-full items-center justify-center z-10 group-hover:bg-white transition-colors">
+                    <svg className="w-3 h-3 text-white group-hover:text-[#a41034]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                       <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                     </svg>
                   </div>

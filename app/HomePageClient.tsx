@@ -240,7 +240,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link href="/admissions" className="px-9 py-4 bg-[var(--brand-blue)] text-white font-bold text-sm tracking-widest uppercase hover:bg-[#0048c8] transition-all shadow-xl text-center hover:scale-105 transform duration-200">
+            <Link href="/admissions" className="px-9 py-4 bg-white text-[#1b1c1d] font-bold text-sm tracking-widest uppercase hover:bg-gray-100 transition-all shadow-xl text-center hover:scale-105 transform duration-200">
               {homeCopy.hero.primaryCtaLabel}
             </Link>
             <Link href="/about" className="px-9 py-4 border border-white text-white font-bold text-sm tracking-widest uppercase hover:bg-white hover:text-[#1b1c1d] transition-all text-center hover:scale-105 transform duration-200">
