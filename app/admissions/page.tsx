@@ -158,7 +158,7 @@ export default async function AdmissionsPage() {
           </div>
 
           <div className="mt-8 text-center">
-            <Link href="/student-application" className="inline-block px-12 py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest hover:bg-red-900 transition-colors">
+            <Link href="/student-application" className="inline-block px-12 py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest hover:bg-[var(--brand-yellow)] hover:text-[#1b1c1d] transition-colors">
               Start Your Application
             </Link>
           </div>
@@ -206,8 +206,8 @@ export default async function AdmissionsPage() {
             </p>
             <Link
               href="/student-application"
-              className="inline-block px-8 py-3 font-bold text-sm uppercase tracking-widest transition-colors"
-              style={{ backgroundColor: "#f7c948", color: "#ffffff", boxShadow: "none" }}
+              className="inline-block px-8 py-3 bg-[var(--brand-yellow)] text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#1b1c1d] transition-colors"
+              style={{ boxShadow: "none" }}
             >
               Apply Online
             </Link>

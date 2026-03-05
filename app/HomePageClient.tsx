@@ -281,10 +281,10 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
             </h2>
           </div>
           <div className="flex gap-4 flex-shrink-0">
-            <Link href="/student-application" className="px-8 py-3 bg-[var(--brand-blue)] text-white font-bold text-sm uppercase tracking-widest hover:bg-[#0048c8] transition-all hover:scale-105 transform duration-200 shadow-md text-center">
+            <Link href="/student-application" className="px-8 py-3 bg-[var(--brand-yellow)] text-white font-bold text-sm uppercase tracking-widest hover:bg-[#e0b93f] transition-all hover:scale-105 transform duration-200 shadow-md text-center">
               Apply Now
             </Link>
-            <Link href="/admissions" className="px-8 py-3 border border-[var(--brand-yellow)]/70 text-white font-bold text-sm uppercase tracking-widest hover:border-[var(--brand-yellow)] hover:bg-[var(--brand-yellow)] hover:text-[#0d2340] transition-all text-center">
+            <Link href="/admissions" className="px-8 py-3 border border-[var(--brand-yellow)]/70 text-white font-bold text-sm uppercase tracking-widest hover:border-white hover:bg-white hover:text-[#1b1c1d] transition-all text-center">
               Learn More
             </Link>
           </div>
