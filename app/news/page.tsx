@@ -11,11 +11,11 @@ export const metadata: Metadata = {
 };
 
 const categoryColors: Record<string, string> = {
-  Admissions: "bg-[#a41034] text-white",
-  Achievement: "bg-green-800 text-white",
-  Leadership: "bg-[#1b1c1d] text-white",
+  Admissions: "bg-[var(--brand-crimson)] text-white",
+  Achievement: "bg-emerald-900 text-white",
+  Leadership: "bg-[#0f0e0d] text-white",
   Community: "bg-purple-900 text-white",
-  Event: "bg-amber-800 text-white",
+  Event: "bg-amber-900 text-white",
 };
 
 export default async function NewsPage() {
@@ -23,13 +23,11 @@ export default async function NewsPage() {
   const featured = articles.find((a) => a.featured) ?? articles[0];
   if (!featured) {
     return (
-      <div className="min-h-screen bg-[#fcfcfc]" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+      <div className="min-h-screen font-sans" style={{ background: "var(--background)" }}>
         <NavBar />
         <div className="max-w-3xl mx-auto px-6 py-24 text-center">
-          <h1 className="text-3xl font-bold text-[#1b1c1d]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-            News &amp; Updates
-          </h1>
-          <p className="text-gray-500 mt-4">No articles published yet.</p>
+          <h1 className="font-serif text-3xl font-light text-[var(--foreground)]">News &amp; Updates</h1>
+          <p className="text-[var(--muted)] mt-4 font-sans">No articles published yet.</p>
         </div>
       </div>
     );
@@ -37,33 +35,37 @@ export default async function NewsPage() {
   const rest = articles.filter((a) => a !== featured);
 
   return (
-    <div className="min-h-screen bg-[#fcfcfc]" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+    <div className="min-h-screen font-sans" style={{ background: "var(--background)" }}>
       <NavBar />
 
       {/* Hero */}
-      <div className="w-full bg-[#1b1c1d] py-20 px-6 lg:px-12 text-center">
-        <span className="inline-block py-1.5 px-5 bg-[var(--brand-red)] text-white text-[10px] font-bold tracking-[0.25em] uppercase mb-4">
-          Latest from SIU
-        </span>
-        <h1
-          className="text-4xl md:text-6xl font-bold text-white leading-tight"
-          style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-        >
-          News &amp; Updates
-        </h1>
-        <p className="text-gray-400 mt-4 max-w-xl mx-auto text-lg">
-          Stories of achievement, innovation, and community from Starford International University.
-        </p>
+      <div className="w-full bg-[#0f0e0d] py-28 px-6 lg:px-16">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-8 h-px bg-[var(--brand-gold)]" />
+            <span className="text-[var(--brand-gold)] text-[10px] font-sans font-semibold uppercase tracking-[0.3em]">Latest from SIU</span>
+          </div>
+          <h1 className="font-serif text-5xl md:text-7xl font-light text-white leading-tight mb-5">
+            News &amp; Updates
+          </h1>
+          <p className="text-white/40 font-sans max-w-lg text-base leading-relaxed">
+            Stories of achievement, innovation, and community from Starford International University.
+          </p>
+        </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-24">
+      <div className="max-w-7xl mx-auto px-6 lg:px-16 py-24">
 
         {/* Section header */}
-        <div className="flex justify-between items-end border-b-2 border-[#1b1c1d] pb-4 mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-[#1b1c1d]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-            In Focus
-          </h2>
-          <span className="font-bold text-[#a41034] text-xs tracking-widest uppercase">
+        <div className="flex justify-between items-end border-b border-[var(--border)] pb-5 mb-16">
+          <div>
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-6 h-px bg-[var(--brand-crimson)]" />
+              <span className="text-[var(--brand-crimson)] text-[10px] font-sans font-semibold uppercase tracking-[0.3em]">Featured</span>
+            </div>
+            <h2 className="font-serif text-3xl md:text-4xl font-light text-[var(--foreground)]">In Focus</h2>
+          </div>
+          <span className="font-sans font-semibold text-[var(--muted)] text-[11px] tracking-widest uppercase">
             All Stories
           </span>
         </div>
@@ -73,34 +75,31 @@ export default async function NewsPage() {
           href={featured.href}
           target="_blank"
           rel="noopener noreferrer"
-          className="group block bg-[#1b1c1d] mb-12 hover:bg-[#111] transition-colors overflow-hidden reveal"
+          className="group block bg-[#0f0e0d] mb-16 hover:bg-[#000] transition-colors overflow-hidden reveal"
         >
           <div className="flex flex-col md:flex-row items-stretch">
             {"image" in featured && featured.image && (
-              <div className="relative md:w-72 lg:w-96 h-64 md:h-[420px] flex-shrink-0 overflow-hidden">
+              <div className="relative md:w-80 lg:w-[480px] h-72 md:h-auto flex-shrink-0 overflow-hidden">
                 <Image
                   src={featured.image as string}
                   alt={featured.title}
                   fill
-                  sizes="(min-width: 1024px) 384px, (min-width: 768px) 288px, 100vw"
-                  className="w-full h-64 md:h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                  sizes="(min-width: 1024px) 480px, (min-width: 768px) 320px, 100vw"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
               </div>
             )}
             <div className="flex-1 p-10 md:p-14">
-              <span className={`inline-block px-3 py-1 text-[10px] font-bold uppercase tracking-widest mb-5 ${categoryColors[featured.category] ?? "bg-[#1b1c1d] text-white"}`}>
+              <span className={`inline-block px-3 py-1 text-[10px] font-sans font-semibold uppercase tracking-widest mb-6 ${categoryColors[featured.category] ?? "bg-[#0f0e0d] text-white"}`}>
                 {featured.category}
               </span>
-              <h2
-                className="text-2xl md:text-4xl font-bold text-white leading-tight mb-5 group-hover:text-[#a41034] transition-colors"
-                style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-              >
+              <h2 className="font-serif text-2xl md:text-4xl font-light text-white leading-tight mb-5 group-hover:text-[var(--brand-gold)] transition-colors">
                 {featured.title}
               </h2>
-              <p className="text-gray-400 leading-relaxed text-base max-w-3xl">{featured.excerpt}</p>
-              <span className="inline-flex items-center gap-2 mt-8 text-[#a41034] font-bold text-xs uppercase tracking-widest group-hover:gap-4 transition-all">
+              <p className="text-white/40 font-sans leading-relaxed text-sm max-w-2xl mb-8">{featured.excerpt}</p>
+              <span className="inline-flex items-center gap-2 text-[var(--brand-gold)] font-sans font-semibold text-[11px] uppercase tracking-widest group-hover:gap-4 transition-all">
                 Read Full Story
-                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
                 </svg>
               </span>
@@ -108,39 +107,36 @@ export default async function NewsPage() {
           </div>
         </a>
 
-        {/* Rest of articles grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-gray-200">
+        {/* Rest of articles */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[var(--border)]">
           {rest.map((article, i) => (
             <a
               key={i}
               href={article.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={`group border-b border-r border-gray-200 hover:bg-gray-50 transition-colors flex flex-col reveal stagger-${(i % 6) + 1}`}
+              className={`group bg-[var(--surface)] hover:bg-white transition-colors flex flex-col reveal stagger-${(i % 6) + 1}`}
             >
               {"image" in article && article.image && (
-                <div className="relative overflow-hidden aspect-video bg-gray-200">
+                <div className="relative overflow-hidden bg-[var(--border)]" style={{ aspectRatio: "16/9" }}>
                   <Image
                     src={article.image as string}
                     alt={article.title}
                     fill
                     sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
               )}
-              <div className="p-8 flex flex-col flex-grow">
-                <span className={`inline-block self-start px-2 py-0.5 text-[10px] font-bold uppercase tracking-widest mb-4 ${categoryColors[article.category] ?? "bg-[#1b1c1d] text-white"}`}>
+              <div className="p-7 flex flex-col flex-grow">
+                <span className={`inline-block self-start px-2 py-0.5 text-[10px] font-sans font-semibold uppercase tracking-widest mb-4 ${categoryColors[article.category] ?? "bg-[#0f0e0d] text-white"}`}>
                   {article.category}
                 </span>
-                <h3
-                  className="font-bold text-[#1b1c1d] text-lg leading-snug mb-3 group-hover:text-[#a41034] transition-colors flex-grow"
-                  style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
-                >
+                <h3 className="font-serif font-light text-[var(--foreground)] text-lg leading-snug mb-3 group-hover:text-[var(--brand-crimson)] transition-colors flex-grow">
                   {article.title}
                 </h3>
-                <p className="text-gray-500 text-sm leading-relaxed mb-6 line-clamp-3">{article.excerpt}</p>
-                <span className="inline-flex items-center gap-1.5 text-[#a41034] font-bold text-xs uppercase tracking-widest mt-auto group-hover:gap-3 transition-all">
+                <p className="text-[var(--muted)] text-sm font-sans leading-relaxed mb-6 line-clamp-3">{article.excerpt}</p>
+                <span className="inline-flex items-center gap-1.5 text-[var(--brand-crimson)] font-sans font-semibold text-[11px] uppercase tracking-widest mt-auto group-hover:gap-3 transition-all">
                   Read More
                   <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
@@ -150,14 +146,15 @@ export default async function NewsPage() {
             </a>
           ))}
         </div>
-
-
       </div>
 
       {/* Footer */}
-      <div className="w-full bg-[#111] border-t-4 border-[#a41034] py-8 px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-gray-500 text-xs">© {new Date().getFullYear()} Starford International University. All rights reserved.</p>
-        <Link href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">← Back to Home</Link>
+      <div className="w-full bg-[#0f0e0d] border-t-2 border-[var(--brand-crimson)] py-8 px-6 lg:px-16 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p className="text-white/25 text-xs font-sans">© {new Date().getFullYear()} Starford International University. All rights reserved.</p>
+        <Link href="/" className="text-[var(--brand-crimson)] font-sans font-semibold text-[10px] uppercase tracking-widest hover:underline flex items-center gap-1">
+          <svg className="w-3 h-3 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" /></svg>
+          Back to Home
+        </Link>
       </div>
     </div>
   );

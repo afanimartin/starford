@@ -55,88 +55,111 @@ const offerings = [
 export default async function AboutPage() {
   const aboutCopy = await getAboutCopy();
   return (
-    <div className="min-h-screen bg-[#fcfcfc]" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+    <div className="min-h-screen font-sans" style={{ background: "var(--background)" }}>
 
       <NavBar />
 
       {/* Page Hero */}
-      <div className="relative w-full py-20 px-6 lg:px-12 text-center overflow-hidden">
+      <div className="relative w-full min-h-[70vh] flex items-end overflow-hidden">
         <Image
           src="/about.jpeg"
           alt="About Starford International University"
           fill
           priority
           sizes="100vw"
-          className="object-cover hero-zoom-in"
+          className="object-cover"
         />
-        <div className="absolute inset-0 bg-black/80" />
-        <div className="relative z-10">
-          <span className="inline-block py-1.5 px-5 bg-[var(--brand-red)] text-white text-[10px] font-bold tracking-[0.25em] uppercase mb-4">{aboutCopy.heroBadge}</span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/20" />
+        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-16 w-full pb-20">
+          <div className="flex items-center gap-3 mb-5">
+            <div className="w-8 h-px bg-[var(--brand-gold)]" />
+            <span className="text-[var(--brand-gold)] text-[10px] font-sans font-semibold uppercase tracking-[0.3em]">{aboutCopy.heroBadge}</span>
+          </div>
+          <h1 className="font-serif text-5xl md:text-7xl font-light text-white leading-tight max-w-3xl">
             {aboutCopy.heroTitle}
           </h1>
-          <p className="text-gray-200 mt-4 max-w-xl mx-auto text-lg">
+          <p className="text-white/55 font-sans mt-5 max-w-lg text-base leading-relaxed">
             {aboutCopy.heroSubtitle}
           </p>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-24">
-
-        {/* Story + Mission/Vision */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-20">
+      {/* Story + Mission/Vision */}
+      <section className="max-w-7xl mx-auto px-6 lg:px-16 py-28">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 mb-24">
           <div className="lg:col-span-2 reveal reveal-x-left">
-            <span className="text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-4 block">{aboutCopy.storyKicker}</span>
-            <h2 className="text-2xl md:text-3xl font-bold text-[#1b1c1d] mb-6 leading-tight" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+            <div className="flex items-center gap-3 mb-5">
+              <div className="w-6 h-px bg-[var(--brand-crimson)]" />
+              <span className="text-[var(--brand-crimson)] text-[10px] font-sans font-semibold uppercase tracking-[0.3em]">{aboutCopy.storyKicker}</span>
+            </div>
+            <h2 className="font-serif text-3xl md:text-4xl font-light text-[var(--foreground)] mb-8 leading-tight">
               {aboutCopy.storyTitle}
             </h2>
-            <div className="space-y-4 text-gray-600 leading-relaxed text-[16px]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+            <div className="space-y-5 text-[var(--muted)] leading-relaxed font-serif text-[17px]">
               <p>
-                Starford International University College (SIUC) was founded in <strong className="text-[#1b1c1d]">2015</strong> by South Sudanese entrepreneur <strong className="text-[#1b1c1d]">Dium (Gium) Cyer Cyer Deng</strong>, with a bold vision: to build a university that not only educates, but empowers a generation of leaders to contribute to peace, development, and national self-reliance.
+                Starford International University College (SIUC) was founded in <strong className="text-[var(--foreground)]">2015</strong> by South Sudanese entrepreneur <strong className="text-[var(--foreground)]">Dium (Gium) Cyer Cyer Deng</strong>, with a bold vision: to build a university that not only educates, but empowers a generation of leaders to contribute to peace, development, and national self-reliance.
               </p>
               <p>
                 The general welfare of the people is the pivotal concern of the University — addressing issues of poverty, illiteracy, and social ills, maintaining peace and tranquility, and creating harmonious relations amongst the people of various nationalities in the region.
               </p>
               <p>
-                In <strong className="text-[#1b1c1d]">October 2025</strong>, SIUC officially earned full university accreditation as Starford International University, following Ministerial Order No. 23/2025 from the South Sudanese Minister of Higher Education. In our 5th Convocation (April 2025), SIU celebrated <strong className="text-[#1b1c1d]">636 graduates</strong> — including over <strong className="text-[#1b1c1d]">200 women</strong> — drawn from various disciplines.
+                In <strong className="text-[var(--foreground)]">October 2025</strong>, SIUC officially earned full university accreditation as Starford International University, following Ministerial Order No. 23/2025. In our 5th Convocation (April 2025), SIU celebrated <strong className="text-[var(--foreground)]">636 graduates</strong> — including over <strong className="text-[var(--foreground)]">200 women</strong>.
               </p>
               <p>
-                Our SIU Moot Court team recently made national history, winning the <strong className="text-[#1b1c1d]">5th South Sudan International Humanitarian Law (IHL) Moot Court Competition</strong> and representing the country at the All-Africa IHL Moot.
+                Our SIU Moot Court team recently made national history, winning the <strong className="text-[var(--foreground)]">5th South Sudan International Humanitarian Law (IHL) Moot Court Competition</strong> and representing the country at the All-Africa IHL Moot.
               </p>
             </div>
           </div>
 
-          <div className="flex flex-col gap-8">
-            <div className="bg-white border border-gray-200 p-8 shadow-sm reveal reveal-x-right">
-              <div className="w-10 h-1 bg-[#a41034] mb-5" />
-              <h4 className="text-xs font-bold uppercase tracking-widest text-[#a41034] mb-3">{aboutCopy.mission.title}</h4>
-              <p className="text-gray-700 leading-relaxed text-sm" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+          <div className="flex flex-col gap-6">
+            <div className="bg-[var(--surface)] border border-[var(--border)] p-8 reveal reveal-x-right">
+              <div className="w-8 h-px bg-[var(--brand-crimson)] mb-5" />
+              <h4 className="text-[10px] font-sans font-semibold uppercase tracking-widest text-[var(--brand-crimson)] mb-3">{aboutCopy.mission.title}</h4>
+              <p className="text-[var(--muted)] leading-relaxed font-serif text-[15px]">
                 {aboutCopy.mission.body}
               </p>
             </div>
-            <div className="bg-[#1b1c1d] p-8 shadow-sm reveal reveal-x-right">
-              <div className="w-10 h-1 bg-[#a41034] mb-5" />
-              <h4 className="text-xs font-bold uppercase tracking-widest text-[#a41034] mb-3">{aboutCopy.vision.title}</h4>
-              <p className="text-gray-300 leading-relaxed text-sm" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+            <div className="bg-[#0f0e0d] p-8 reveal reveal-x-right">
+              <div className="w-8 h-px bg-[var(--brand-crimson)] mb-5" />
+              <h4 className="text-[10px] font-sans font-semibold uppercase tracking-widest text-[var(--brand-crimson)] mb-3">{aboutCopy.vision.title}</h4>
+              <p className="text-white/55 leading-relaxed font-serif text-[15px]">
                 {aboutCopy.vision.body}
               </p>
             </div>
           </div>
         </div>
 
+        {/* Stats row */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-px bg-[var(--border)] mb-24 reveal">
+          {[
+            { value: "636", label: "Graduates (April 2025)" },
+            { value: "5", label: "Academic Colleges" },
+            { value: "200+", label: "Women Graduates" },
+            { value: "2015", label: "Year Founded" },
+          ].map((s, i) => (
+            <div key={i} className="bg-[var(--surface)] py-10 px-8 text-center">
+              <p className="font-serif text-4xl font-light text-[var(--foreground)] mb-2">{s.value}</p>
+              <p className="text-[var(--muted)] text-[10px] font-sans font-semibold uppercase tracking-widest">{s.label}</p>
+            </div>
+          ))}
+        </div>
+
         {/* Core Values + What We Offer */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
 
           <div className="reveal">
-            <span className="text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-6 block">Our Core Values</span>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="flex items-center gap-3 mb-8">
+              <div className="w-6 h-px bg-[var(--brand-crimson)]" />
+              <span className="text-[var(--brand-crimson)] text-[10px] font-sans font-semibold uppercase tracking-[0.3em]">Our Core Values</span>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-[var(--border)]">
               {values.map((value, i) => (
-                <div key={i} className={`bg-white border border-gray-200 p-6 hover:border-[#a41034] hover:shadow-md transition-all group reveal stagger-${(i % 4) + 1}`}>
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-8 h-8 text-[#a41034] mb-4">
+                <div key={i} className={`bg-[var(--surface)] p-6 hover:bg-white transition-colors group reveal stagger-${(i % 4) + 1}`}>
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1} stroke="currentColor" className="w-7 h-7 text-[var(--brand-crimson)] mb-4">
                     <path strokeLinecap="round" strokeLinejoin="round" d={value.icon} />
                   </svg>
-                  <h5 className="font-bold text-[#1b1c1d] text-sm mb-2 group-hover:text-[#a41034] transition-colors">{value.label}</h5>
-                  <p className="text-gray-500 text-xs leading-relaxed">{value.desc}</p>
+                  <h5 className="font-serif font-semibold text-[var(--foreground)] text-base mb-2 group-hover:text-[var(--brand-crimson)] transition-colors">{value.label}</h5>
+                  <p className="text-[var(--muted)] text-sm font-sans leading-relaxed">{value.desc}</p>
                 </div>
               ))}
             </div>
@@ -144,14 +167,19 @@ export default async function AboutPage() {
 
           <div className="flex flex-col gap-8">
             <div className="reveal">
-              <span className="text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-6 block">What We Offer</span>
-              <ul className="space-y-4">
+              <div className="flex items-center gap-3 mb-8">
+                <div className="w-6 h-px bg-[var(--brand-crimson)]" />
+                <span className="text-[var(--brand-crimson)] text-[10px] font-sans font-semibold uppercase tracking-[0.3em]">What We Offer</span>
+              </div>
+              <ul className="space-y-5">
                 {offerings.map((item, i) => (
-                  <li key={i} className="flex gap-4">
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#a41034] mt-2 flex-shrink-0" />
+                  <li key={i} className="flex gap-4 pb-5 border-b border-[var(--border)] last:border-b-0">
+                    <span className="font-serif text-[var(--brand-crimson)] text-lg font-light mt-0.5 flex-shrink-0">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                     <div>
-                      <span className="font-bold text-[#1b1c1d] text-sm">{item.title}: </span>
-                      <span className="text-gray-600 text-sm leading-relaxed">{item.desc}</span>
+                      <span className="font-sans font-semibold text-[var(--foreground)] text-sm">{item.title}: </span>
+                      <span className="text-[var(--muted)] text-sm font-sans leading-relaxed">{item.desc}</span>
                     </div>
                   </li>
                 ))}
@@ -159,33 +187,30 @@ export default async function AboutPage() {
             </div>
 
             {/* Accreditation Callout */}
-            <div className="bg-[var(--brand-blue)] p-8 text-white reveal">
-              <div className="flex items-start gap-4">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-10 h-10 flex-shrink-0 mt-1 opacity-80">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 0 1-1.043 3.296 3.745 3.745 0 0 1-3.296 1.043A3.745 3.745 0 0 1 12 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 0 1-3.296-1.043 3.745 3.745 0 0 1-1.043-3.296A3.745 3.745 0 0 1 3 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 0 1 1.043-3.296 3.746 3.746 0 0 1 3.296-1.043A3.746 3.746 0 0 1 12 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 0 1 3.296 1.043 3.746 3.746 0 0 1 1.043 3.296A3.745 3.745 0 0 1 21 12Z" />
-                </svg>
-                <div>
-                  <h4 className="font-bold text-lg mb-1" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-                    Officially Accredited
-                  </h4>
-                  <p className="text-white/80 text-sm leading-relaxed mb-3">
-                    Recognized by the <strong className="text-white">South Sudan Ministry of Higher Education, Science and Technology</strong> via Ministerial Order No. 23/2025 (October 2025).
-                  </p>
-                  <Link href="/about" className="text-white font-bold text-xs uppercase tracking-widest border-b border-white/40 pb-0.5 hover:border-white transition-colors">
-                    Learn More →
-                  </Link>
-                </div>
-              </div>
+            <div className="bg-[var(--brand-crimson)] p-8 text-white reveal">
+              <div className="w-8 h-px bg-[var(--brand-gold)] mb-5" />
+              <h4 className="font-serif font-light text-2xl mb-3">
+                Officially Accredited
+              </h4>
+              <p className="text-white/70 font-sans text-sm leading-relaxed mb-5">
+                Recognized by the <strong className="text-white">South Sudan Ministry of Higher Education, Science and Technology</strong> via Ministerial Order No. 23/2025 (October 2025).
+              </p>
+              <Link href="/admissions" className="inline-flex items-center gap-2 text-[var(--brand-gold)] font-sans font-semibold text-[10px] uppercase tracking-widest hover:underline">
+                Learn More
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" /></svg>
+              </Link>
             </div>
           </div>
         </div>
-
-      </div>
+      </section>
 
       {/* Footer strip */}
-      <div className="w-full bg-[#111] border-t-4 border-[#a41034] py-8 px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-gray-500 text-xs">© {new Date().getFullYear()} Starford International University. All rights reserved.</p>
-        <Link href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">← Back to Home</Link>
+      <div className="w-full bg-[#0f0e0d] border-t-2 border-[var(--brand-crimson)] py-8 px-6 lg:px-16 flex flex-col md:flex-row justify-between items-center gap-4">
+        <p className="text-white/25 text-xs font-sans">© {new Date().getFullYear()} Starford International University. All rights reserved.</p>
+        <Link href="/" className="text-[var(--brand-crimson)] font-sans font-semibold text-[10px] uppercase tracking-widest hover:underline flex items-center gap-1">
+          <svg className="w-3 h-3 rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" /></svg>
+          Back to Home
+        </Link>
       </div>
 
     </div>
