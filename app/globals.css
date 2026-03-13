@@ -5,7 +5,7 @@
   --foreground: #1b1c1d;
   --brand-red: #a41034;
   --brand-blue: #0050d8;
-  --brand-yellow: #f7c948;
+  --brand-yellow: hsl(44, 92%, 63%);
   --crimson: var(--brand-red);
 }
 

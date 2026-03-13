@@ -11,25 +11,25 @@ export const metadata: Metadata = {
 
 const contacts = [
   {
+    name: "Mr. Uwkah Abraham",
+    role: "Admissions",
+    phone: "+211 922 281 650",
+    tel: "+211922281650",
+    initial: "U",
+  },
+  {
     name: "Mr. Atem Arop Majok",
-    role: "Director of Finance",
+    role: "Finance",
     phone: "+211 980 333 824",
     tel: "+211980333824",
     initial: "A",
   },
   {
-    name: "Mr. Moses Marial Buon",
-    role: "Dean, College of Computer Science & IT",
+    name: "Dr. Ayor",
+    role: "Research and innovation",
     phone: "+211 926 061 870",
     tel: "+211926061870",
-    initial: "M",
-  },
-  {
-    name: "Mr. Uwkah Abraham",
-    role: "Director of Academic Affairs",
-    phone: "+211 922 281 650 / 925 289 771",
-    tel: "+211922281650",
-    initial: "U",
+    initial: "A",
   },
 ];
 

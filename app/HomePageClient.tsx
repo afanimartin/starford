@@ -458,7 +458,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
               },
               {
                 img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1000&auto=format&fit=crop",
-                label: "College of Law",
+                label: "Law",
                 desc: "National IHL Moot Court champions. Training South Sudan's next generation of legal professionals.",
               },
               {
@@ -586,18 +586,18 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
               <p className="text-gray-200 font-medium">Starford International University<br/>Juba, Republic of South Sudan</p>
               <p>
                 <span className="text-gray-500 text-xs uppercase tracking-wider block mb-1">Admissions</span>
+                <a href="tel:+211922281650" className="hover:text-white transition-colors">Mr. Uwkah Abraham</a><br/>
+                <a href="tel:+211922281650" className="hover:text-white transition-colors text-xs">+211 922 281 650</a>
+              </p>
+              <p>
+                <span className="text-gray-500 text-xs uppercase tracking-wider block mb-1">Finance</span>
                 <a href="tel:+211980333824" className="hover:text-white transition-colors">Mr. Atem Arop Majok</a><br/>
                 <a href="tel:+211980333824" className="hover:text-white transition-colors text-xs">+211 980 333 824</a>
               </p>
               <p>
-                <span className="text-gray-500 text-xs uppercase tracking-wider block mb-1">Academics</span>
-                <a href="tel:+211926061870" className="hover:text-white transition-colors">Mr. Moses Marial Buon</a><br/>
+                <span className="text-gray-500 text-xs uppercase tracking-wider block mb-1">Research and innovation</span>
+                <a href="tel:+211926061870" className="hover:text-white transition-colors">Dr. Ayor</a><br/>
                 <a href="tel:+211926061870" className="hover:text-white transition-colors text-xs">+211 926 061 870</a>
-              </p>
-              <p>
-                <span className="text-gray-500 text-xs uppercase tracking-wider block mb-1">Administration</span>
-                <a href="tel:+211922281650" className="hover:text-white transition-colors">Mr. Uwkah Abraham</a><br/>
-                <a href="tel:+211922281650" className="hover:text-white transition-colors text-xs">+211 922 281 650</a>
               </p>
             </address>
             <Link href="/contact" className="inline-block px-6 py-2.5 bg-[var(--brand-red)] text-white font-bold text-xs uppercase tracking-widest hover:bg-red-900 transition-colors">
