@@ -321,7 +321,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
                 <p className="text-[#1b1c1d] font-bold text-sm" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
                   Hon. Dium (Gium) Cyer Cyer Deng
                 </p>
-                <p className="text-gray-500 text-xs uppercase tracking-widest mt-1">Founder &amp; Chairman of the Board</p>
+                <p className="text-gray-500 text-xs uppercase tracking-widest mt-1">FOUNDER &amp; CHAIRMAN BOARD OF DIRECTORS</p>
               </div>
               <div className="h-10 w-px bg-gray-200" />
               <Link href="/about" className="text-[var(--brand-red)] font-bold text-xs uppercase tracking-widest hover:underline">
@@ -333,7 +333,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
           <div className="relative reveal reveal-x-right">
             <div className="relative overflow-hidden aspect-[3/4] max-w-md mx-auto lg:ml-auto lg:mr-0 shadow-2xl hover-shimmer group">
               <Image
-                src="/chairman.jpeg"
+                src="/chairman.jpg"
                 alt="Hon. Dium Cyer Cyer Deng — Founder & Chairman, Starford International University"
                 fill
                 sizes="(min-width: 1024px) 420px, 90vw"
@@ -344,7 +344,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
                   Hon. Dium Cyer Cyer Deng
                 </p>
                 <p className="text-[var(--brand-red)] font-bold text-xs uppercase tracking-widest mt-1">
-                  Founder &amp; Chairman of the Board
+                  FOUNDER &amp; CHAIRMAN BOARD OF DIRECTORS
                 </p>
                 <p className="text-gray-400 text-xs mt-1">Starford International University</p>
               </div>
