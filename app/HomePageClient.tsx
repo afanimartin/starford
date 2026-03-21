@@ -6,10 +6,24 @@ import { useState, useEffect, useRef } from "react";
 import NavBar from "./components/NavBar";
 import type { HomeCopy } from "@/lib/content";
 
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(Math.max(value, min), max);
+}
+
+function splitHeadlineIntoLines(headline: string): string[] {
+  const words = headline.trim().split(/\s+/);
+  if (words.length <= 3) return [headline];
+
+  const midpoint = Math.ceil(words.length / 2);
+  return [words.slice(0, midpoint).join(" "), words.slice(midpoint).join(" ")];
+}
+
 export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
   const slides = homeCopy.slides;
   const [scrollY, setScrollY] = useState(0);
+  const [scrollZoomProgress, setScrollZoomProgress] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const scrollZoomRef = useRef<HTMLElement>(null);
   useEffect(() => {
     if (typeof window === "undefined" || !window.matchMedia) return;
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -20,10 +34,25 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
   }, []);
 
   useEffect(() => {
-    const handler = () => setScrollY(window.scrollY);
+    const handler = () => {
+      setScrollY(window.scrollY);
+
+      const node = scrollZoomRef.current;
+      if (!node) return;
+
+      const rect = node.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || 1;
+      const rawProgress = (viewportHeight - rect.top) / (rect.height - viewportHeight * 0.15);
+      setScrollZoomProgress(clamp(rawProgress, 0, 1));
+    };
+
     handler();
     window.addEventListener("scroll", handler, { passive: true });
-    return () => window.removeEventListener("scroll", handler);
+    window.addEventListener("resize", handler);
+    return () => {
+      window.removeEventListener("scroll", handler);
+      window.removeEventListener("resize", handler);
+    };
   }, []);
 
   /* ── Hero slide rotator ── */
@@ -46,6 +75,13 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
     image: "/grad-procession.jpg",
     sub: "Equipping students with digital skills, data fluency, and innovative thinking to lead South Sudan's knowledge economy.",
   };
+  const headlineLines = splitHeadlineIntoLines(slide.headline);
+  let wordDelayIndex = 0;
+  const zoomScale = prefersReducedMotion ? 1 : 0.72 + scrollZoomProgress * 0.48;
+  const zoomOpacity = prefersReducedMotion ? 1 : 0.16 + scrollZoomProgress * 0.84;
+  const zoomBlur = prefersReducedMotion ? 0 : (1 - scrollZoomProgress) * 14;
+  const zoomLetterSpacing = prefersReducedMotion ? "0.08em" : `${0.28 - scrollZoomProgress * 0.2}em`;
+  const zoomTranslateY = prefersReducedMotion ? 0 : (1 - scrollZoomProgress) * 64;
 
   const moveSlide = (dir: 1 | -1) => {
     if (slides.length === 0) return;
@@ -177,20 +213,44 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
           <div aria-live="polite" aria-atomic="true">
             {/* Rotating headline */}
             <h1
-              key={`headline-${slideIdx}`}
-              className={`text-3xl sm:text-5xl md:text-6xl font-bold text-white leading-[1.1] mb-4 tracking-tight ${
-                prefersReducedMotion ? "" : direction === 1 ? "slide-in-right" : "slide-in-left"
-              }`}
+              key={`headline-${slideIdx}-${progressResetKey}`}
+              className="mb-4 text-3xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl md:text-6xl"
               style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
             >
-              {slide.headline}
+              <span className="flex flex-col gap-1 md:gap-2">
+                {headlineLines.map((line, lineIndex) => (
+                  <span key={`${slideIdx}-${line}`} className="block overflow-hidden">
+                    <span className="block">
+                      {line.split(" ").map((word, wordIndex, words) => {
+                        const delay = wordDelayIndex * 150;
+                        wordDelayIndex += 1;
+
+                        return (
+                          <span
+                            key={`${slideIdx}-${lineIndex}-${word}-${wordIndex}`}
+                            className="inline-block overflow-hidden align-top"
+                          >
+                            <span
+                              className={prefersReducedMotion ? "inline-block" : "hero-domino-word inline-block"}
+                              style={prefersReducedMotion ? undefined : { animationDelay: `${delay}ms` }}
+                            >
+                              {word}
+                            </span>
+                            {wordIndex < words.length - 1 ? <span className="inline-block w-[0.28em]" aria-hidden="true" /> : null}
+                          </span>
+                        );
+                      })}
+                    </span>
+                  </span>
+                ))}
+              </span>
             </h1>
 
             {/* Rotating sub-text */}
             <p
-              key={`sub-${slideIdx}`}
+              key={`sub-${slideIdx}-${progressResetKey}`}
               className={`text-base md:text-lg font-light max-w-2xl mx-auto leading-relaxed mb-10 ${
-                prefersReducedMotion ? "" : direction === 1 ? "slide-in-right" : "slide-in-left"
+                prefersReducedMotion ? "" : "hero-sub-reveal"
               }`}
               style={{ color: "rgba(255,255,255,0.75)" }}
             >
@@ -269,7 +329,22 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
         </div>
       </section>
 
-      {/* 5. Admissions + Accreditation CTA Banner */}
+      {/* 5. Scroll Zoom Statement */}
+      <section
+        ref={scrollZoomRef}
+        className="relative h-[170vh] overflow-clip bg-[#f3efe6]"
+      >
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.9),rgba(243,239,230,0.7)_38%,rgba(164,16,52,0.08)_100%)]" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#f3efe6] to-transparent" />
+        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#f3efe6] to-transparent" />
+
+        <div className="sticky top-0 flex h-screen items-center justify-center px-6 lg:px-12">
+          <div className="mx-auto flex max-w-6xl flex-col items-center text-center">
+          </div>
+        </div>
+      </section>
+
+      {/* 6. Admissions + Accreditation CTA Banner */}
       <section className="w-full bg-[var(--brand-blue)] py-10 px-6 lg:px-12 reveal">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
@@ -291,7 +366,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
         </div>
       </section>
 
-      {/* 6. Message from the Chairman */}
+      {/* 7. Message from the Chairman */}
       <section className="w-full bg-white py-24 px-6 lg:px-12 border-b border-gray-100">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
@@ -355,7 +430,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
         </div>
       </section>
 
-      {/* 7. In Focus — News Articles */}
+      {/* 8. In Focus — News Articles */}
       <section className="max-w-7xl mx-auto px-6 lg:px-12 py-24 reveal">
         <div className="flex justify-between items-end border-b-2 border-[#1b1c1d] pb-4 mb-14">
           <h2 className="text-3xl md:text-4xl font-bold text-[#1b1c1d]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>In Focus</h2>
@@ -429,7 +504,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
         </div>
       </section>
 
-      {/* 8. Five Colleges — staggered entrance */}
+      {/* 9. Five Colleges — staggered entrance */}
       <section className="w-full bg-[#1b1c1d] py-24">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <h2 className="text-3xl md:text-5xl font-bold text-white mb-4 text-center tracking-tight">
@@ -509,7 +584,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
         </div>
       </section>
 
-      {/* 9. Alumni Quote */}
+      {/* 10. Alumni Quote */}
       <section className="w-full bg-[#fcfcfc] border-y border-gray-200 py-24 px-6 lg:px-12 text-center reveal">
         <div className="max-w-4xl mx-auto">
           <svg className="w-10 h-10 text-[var(--brand-red)] mx-auto mb-8 opacity-50" fill="currentColor" viewBox="0 0 24 24">
@@ -522,7 +597,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
         </div>
       </section>
 
-      {/* 10. Footer */}
+      {/* 11. Footer */}
       <footer className="w-full bg-[#111] pt-20 pb-10 border-t-4 border-[var(--brand-red)]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
 

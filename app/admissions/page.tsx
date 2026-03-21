@@ -87,102 +87,117 @@ const faqs = [
 export default async function AdmissionsPage() {
   const admissionsCopy = await getAdmissionsCopy();
   return (
-    <div className="min-h-screen bg-[#fcfcfc]" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
+    <div className="min-h-screen bg-[#fcfcfc] overflow-x-hidden" style={{ fontFamily: "var(--font-inter), system-ui, sans-serif" }}>
 
       <NavBar />
 
-      {/* Hero — Harvard-style immersive */}
-      <header className="relative w-full min-h-[60vh] flex items-center justify-center overflow-hidden">
-        <div className="absolute inset-0 bg-black">
-          <Image
-            src="/grad-procession.jpg"
-            alt="Starford students"
-            fill
-            sizes="100vw"
-            priority
-            className="w-full h-full object-cover opacity-50"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-        </div>
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-12 w-full text-center">
-          <span className="inline-block py-1.5 px-5 bg-[var(--brand-red)] text-white text-[10px] font-bold tracking-[0.25em] uppercase mb-4">{admissionsCopy.hero.badge}</span>
-          <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-            {admissionsCopy.hero.title}
+      {/* Page Hero */}
+      <div className="relative w-full py-20 px-6 lg:px-12 text-center overflow-hidden">
+        <Image
+          src="/grad-procession.jpg"
+          alt="Admissions at Starford"
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover hero-zoom-in"
+        />
+        <div className="absolute inset-0 bg-black/80" />
+        <div className="relative z-10">
+          <span className="inline-block py-1.5 px-5 bg-[var(--brand-red)] text-white text-[10px] font-bold tracking-[0.25em] uppercase mb-4">
+            {admissionsCopy.hero.badge}
+          </span>
+          <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight flex flex-wrap justify-center gap-x-[0.28em]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+            {admissionsCopy.hero.title.split(" ").map((word, i) => (
+              <span key={i} className="inline-block overflow-hidden align-top">
+                <span className="hero-domino-word inline-block" style={{ animationDelay: `${i * 150}ms` }}>
+                  {word}
+                </span>
+              </span>
+            ))}
           </h1>
-          <p className="text-gray-300 mt-4 max-w-xl mx-auto text-lg leading-relaxed">
+          <p className="text-gray-200 mt-4 max-w-xl mx-auto text-lg">
             {admissionsCopy.hero.subtitle}
           </p>
         </div>
-      </header>
+      </div>
 
-      {/* Key Dates Bar */}
-      <div className="w-full bg-[#a41034]">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/20">
-          {admissionsCopy.keyDates.map((item, i) => (
-            <div key={i} className="py-5 px-8 text-center">
-              <p className="text-white font-bold text-lg">{item.value}</p>
-              <p className="text-white/60 text-xs uppercase tracking-widest font-bold mt-0.5">{item.label}</p>
-            </div>
-          ))}
+      {/* Key Dates Bar (Premium Floating) */}
+      <div className="relative z-20 -mt-8 max-w-6xl mx-auto px-6">
+        <div className="w-full bg-[#1b1c1d] shadow-2xl rounded-2xl overflow-hidden border border-white/10 animate-fade-in-up animate-delay-300">
+          <div className="grid grid-cols-1 sm:grid-cols-3 divide-y sm:divide-y-0 sm:divide-x divide-white/10">
+            {admissionsCopy.keyDates.map((item, i) => (
+              <div key={i} className="group relative py-6 px-8 text-center bg-[#1b1c1d] hover:bg-[#a41034] transition-colors duration-500 overflow-hidden cursor-default">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.1),transparent)] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <p className="text-white font-bold text-xl relative z-10 transition-transform duration-500 group-hover:-translate-y-1">{item.value}</p>
+                <p className="text-white/50 group-hover:text-white/80 text-xs uppercase tracking-[0.2em] font-bold mt-1.5 relative z-10 transition-all duration-500 group-hover:-translate-y-1">{item.label}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-24 space-y-28">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-32 space-y-32">
 
-        {/* How to Apply — Harvard-style numbered steps */}
+        {/* How to Apply — Premium Bento Grid */}
         <div className="reveal">
-          <div className="flex justify-between items-end border-b-2 border-[#1b1c1d] pb-4 mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1b1c1d]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>How to Apply</h2>
-            <Link href="/admissions" className="font-bold text-[#a41034] text-xs tracking-widest uppercase hover:underline">Start Application →</Link>
+          <div className="flex flex-col md:flex-row justify-between items-end border-b-2 border-gray-200 pb-6 mb-16 gap-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1b1c1d] tracking-tight reveal reveal-fade stagger-1" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>How to Apply</h2>
+            <Link href="/student-application" className="group flex items-center gap-2 font-bold text-[#a41034] text-xs tracking-widest uppercase hover:text-red-900 transition-colors reveal reveal-fade stagger-2">
+              Start Application
+              <svg className="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+            </Link>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-0">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {steps.map((step, i) => (
-              <div key={i} className={`group relative p-8 border-r border-gray-200 last:border-r-0 flex flex-col reveal stagger-${Math.min(i + 1, 6)} ${i % 2 === 0 ? "bg-white" : "bg-gray-50"} hover:bg-[var(--brand-yellow)] hover:border-[var(--brand-yellow)] transition-colors`}>
-                <span className="text-[#a41034] group-hover:text-white font-bold text-4xl mb-5 leading-none transition-colors" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-                  {step.num}
-                </span>
-                <h3 className="font-bold text-[#1b1c1d] text-base mb-3 leading-snug group-hover:text-white transition-colors" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-                  {step.title}
-                </h3>
-                <p className="text-gray-500 text-sm leading-relaxed flex-grow group-hover:text-white/85 transition-colors">{step.desc}</p>
-                {i < steps.length - 1 && (
-                  <div className="absolute -right-3 top-1/2 -translate-y-1/2 hidden md:flex w-6 h-6 bg-[#a41034] rounded-full items-center justify-center z-10 group-hover:bg-white transition-colors">
-                    <svg className="w-3 h-3 text-white group-hover:text-[#a41034]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
-                    </svg>
-                  </div>
-                )}
+              <div
+                key={i}
+                className={`group relative p-10 bg-white border border-gray-100 rounded-2xl shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgb(164,16,52,0.08)] transition-all duration-500 hover:-translate-y-2 reveal stagger-${Math.min((i % 3) + 1, 6)} overflow-hidden ${i === 3 || i === 4 ? "md:col-span-1.5" : ""}`}
+                style={i === 3 ? { gridColumn: "md:span 1.5" } : i === 4 ? { gridColumn: "md:span 1.5" } : {}}
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-50 to-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
+                <div className="relative z-10 flex flex-col h-full">
+                  <span className="text-gray-200 group-hover:text-[#a41034]/10 font-black text-6xl md:text-7xl mb-6 leading-none transition-colors duration-500 transform -translate-x-2 -translate-y-2 tracking-tighter" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+                    {step.num}
+                  </span>
+                  <h3 className="font-bold text-[#1b1c1d] text-xl mb-4 leading-snug group-hover:text-[#a41034] transition-colors duration-300" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-500 text-sm leading-relaxed flex-grow">{step.desc}</p>
+                </div>
               </div>
             ))}
           </div>
 
-          <div className="mt-8 text-center">
-            <Link href="/student-application" className="inline-block px-12 py-4 bg-[#a41034] text-white font-bold text-sm uppercase tracking-widest hover:bg-[var(--brand-yellow)] hover:text-[#1b1c1d] transition-colors">
-              Start Your Application
-            </Link>
-          </div>
         </div>
 
-        {/* Entry Requirements — two column */}
+        {/* Entry Requirements — Floating Glossy Cards */}
         <div className="reveal">
-          <div className="flex justify-between items-end border-b-2 border-[#1b1c1d] pb-4 mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1b1c1d]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>Entry Requirements</h2>
+          <div className="flex justify-between items-end border-b-2 border-gray-200 pb-6 mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1b1c1d] tracking-tight reveal reveal-fade stagger-1" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>Entry Requirements</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
             {requirements.map((r, i) => (
-              <div key={i} className={`p-10 ${i === 0 ? "bg-[#1b1c1d]" : "bg-white border border-gray-200"}`}>
-                <div className="w-10 h-1 bg-[#a41034] mb-5" />
-                <h3 className="font-bold text-lg mb-6" style={{ fontFamily: "var(--font-playfair), Georgia, serif", color: i === 0 ? "#fff" : "#1b1c1d" }}>
+              <div key={i} className={`group relative p-10 lg:p-14 rounded-3xl overflow-hidden transition-all duration-500 hover:-translate-y-2 ${i === 0 ? "bg-[#1b1c1d] text-white shadow-2xl hover:shadow-[0_20px_40px_rgba(27,28,29,0.3)]" : "bg-white border border-gray-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)]"}`}>
+                {i === 0 && (
+                  <>
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-[radial-gradient(circle_at_top_right,rgba(164,16,52,0.3),transparent)] opacity-50 pointer-events-none" />
+                    <div className="absolute bottom-0 left-0 w-64 h-64 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.05),transparent)] pointer-events-none" />
+                  </>
+                )}
+                <div className={`w-12 h-1.5 mb-8 rounded-full transition-all duration-500 group-hover:w-20 ${i === 0 ? "bg-[var(--brand-yellow)]" : "bg-[#a41034]"}`} />
+                <h3 className="font-bold text-2xl lg:text-3xl mb-8 tracking-tight" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
                   {r.level}
                 </h3>
-                <ul className="space-y-3">
+                <ul className="space-y-4 relative z-10">
                   {r.items.map((item, j) => (
-                    <li key={j} className="flex gap-3 text-sm" style={{ color: i === 0 ? "rgba(255,255,255,0.75)" : "#4b5563" }}>
-                      <svg className="w-4 h-4 flex-shrink-0 mt-0.5 text-[#a41034]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
-                      </svg>
-                      {item}
+                    <li key={j} className="flex gap-4 text-sm lg:text-base items-start" style={{ color: i === 0 ? "rgba(255,255,255,0.8)" : "#4b5563" }}>
+                      <div className={`mt-1 flex-shrink-0 w-5 h-5 rounded-full flex items-center justify-center ${i === 0 ? "bg-[var(--brand-yellow)]/20 text-[var(--brand-yellow)]" : "bg-red-50 text-[#a41034]"}`}>
+                        <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+                        </svg>
+                      </div>
+                      <span className="leading-relaxed">{item}</span>
                     </li>
                   ))}
                 </ul>
@@ -191,74 +206,84 @@ export default async function AdmissionsPage() {
           </div>
         </div>
 
-        {/* Contact Admissions */}
-        <div
-          className="rounded-2xl border border-blue-300/40 p-10 md:p-16 text-white grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
-          style={{ backgroundColor: "#0050d8", color: "#ffffff", boxShadow: "none" }}
-        >
-          <div>
-            <span className="text-white font-bold text-[10px] tracking-widest uppercase mb-3 block">Get In Touch</span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-              Talk to Our Admissions Team
-            </h2>
-            <p className="text-white leading-relaxed mb-6">
-              Our admissions team is here to guide you through every step — from choosing the right programme to submitting your documents.
-            </p>
-            <Link
-              href="/student-application"
-              className="inline-block px-8 py-3 bg-[var(--brand-yellow)] text-white font-bold text-sm uppercase tracking-widest hover:bg-white hover:text-[#1b1c1d] transition-colors"
-              style={{ boxShadow: "none" }}
-            >
-              Apply Online
-            </Link>
-          </div>
-          <div className="space-y-4 text-sm">
-            <div className="flex items-start gap-4">
-              <svg className="w-5 h-5 mt-0.5 text-white flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" />
-              </svg>
-              <div>
-                <p className="text-white font-semibold">Mr. Uwkah Abraham</p>
-                <p className="text-white">Admissions</p>
-                <a href="tel:+211922281650" className="text-white hover:text-white transition-colors">+211 922 281 650</a>
-              </div>
+        {/* Contact Admissions — Premium White Card */}
+        <div className="reveal">
+          <div
+            className="relative rounded-3xl overflow-hidden p-10 md:p-16 text-[#1b1c1d] grid grid-cols-1 lg:grid-cols-2 gap-16 items-center shadow-sm border border-gray-100 hover:shadow-xl transition-shadow duration-500 bg-white"
+          >
+            <div className="absolute -top-24 -right-24 w-96 h-96 bg-[var(--brand-yellow)] rounded-full mix-blend-multiply filter blur-3xl opacity-10 pointer-events-none animate-pulse" />
+            
+            <div className="relative z-10">
+              <span className="inline-flex items-center gap-2 text-[#a41034] font-bold text-[10px] tracking-widest uppercase mb-5 bg-red-50 px-4 py-1.5 rounded-full border border-red-100">
+                <svg className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}><path strokeLinecap="round" strokeLinejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.43 3 11.996c0 2.29.983 4.39 2.621 5.92m3.679 1.705A9.722 9.722 0 0 0 12 20.25Z" /></svg>
+                Get In Touch
+              </span>
+              <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight tracking-tight text-[#1b1c1d]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+                Talk to Our Admissions Team
+              </h2>
+              <p className="text-gray-600 text-lg leading-relaxed mb-8 max-w-lg font-light">
+                Our admissions team is here to guide you through every step — from choosing the right programme to submitting your documents.
+              </p>
+              <Link
+                href="/student-application"
+                className="group relative inline-flex items-center justify-center px-10 py-4 bg-[#a41034] text-white font-bold text-[16px] uppercase tracking-[0.1em] rounded-none hover:bg-red-900 transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 duration-300"
+              >
+                Apply Online
+                <svg className="w-9 h-6 ml-3 group-hover:translate-x-2 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                </svg>
+              </Link>
             </div>
-            <div className="flex items-start gap-4">
-              <svg className="w-5 h-5 mt-0.5 text-white flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 9h3.75M15 12h3.75M15 15h3.75M4.5 19.5h15a2.25 2.25 0 0 0 2.25-2.25V6.75A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25v10.5A2.25 2.25 0 0 0 4.5 19.5Zm6-10.125a1.875 1.875 0 1 1-3.75 0 1.875 1.875 0 0 1 3.75 0Zm1.294 6.336a6.721 6.721 0 0 1-3.17.789 6.721 6.721 0 0 1-3.168-.789 3.376 3.376 0 0 1 6.338 0Z" />
-              </svg>
-              <div>
-                <p className="text-white font-semibold">Mr.Atem Arop Majok</p>
-                <p className="text-white">Finance</p>
-                <a href="tel:+211980333824" className="text-white hover:text-white transition-colors">+211 980 333 824</a>
-              </div>
-            </div>
-            <div className="flex items-start gap-4 pt-4 border-t border-white/20">
-              <svg className="w-5 h-5 mt-0.5 text-white flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-              </svg>
-              <div>
-                <p className="text-white font-semibold">Campus Location</p>
-                <p className="text-white">Juba, Republic of South Sudan</p>
-              </div>
+
+            <div className="relative z-10 space-y-6">
+              {[
+                { name: "Mr. Uwkah Abraham", role: "Admissions", phone: "+211 922 281 650", icon: <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" /> },
+                { name: "Mr. Atem Arop Majok", role: "Finance", phone: "+211 980 333 824", icon: <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18.75a60.07 60.07 0 0 1 15.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 0 1 3 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 0 0-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 0 1-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 0 0 3 15h-.75M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm3 0h.008v.008H18V10.5Zm-12 0h.008v.008H6V10.5Z" /> },
+                { name: "Campus Location", role: "Juba, Republic of South Sudan", phone: "", icon: <><path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" /><path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" /></> }
+              ].map((contact, i) => (
+                <div key={i} className={`group flex items-start gap-5 p-5 rounded-2xl bg-gray-50 border border-gray-100 hover:bg-white hover:shadow-md transition-all duration-300 ${i === 2 ? 'mt-4 border-t border-gray-200 pt-6' : ''}`}>
+                  <div className="w-12 h-12 rounded-full bg-white border border-gray-200 flex items-center justify-center flex-shrink-0 group-hover:scale-110 group-hover:bg-red-50 group-hover:border-red-100 transition-all duration-300 shadow-sm">
+                    <svg className="w-5 h-5 text-[#a41034]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.8}>
+                      {contact.icon}
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="text-[#1b1c1d] font-bold text-lg" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>{contact.name}</p>
+                    <p className="text-gray-500 text-xs tracking-wider uppercase mb-1 font-medium">{contact.role}</p>
+                    {contact.phone && (
+                      <a href={`tel:${contact.phone.replace(/\s+/g, '')}`} className="inline-block text-[#a41034] hover:text-red-900 font-bold text-sm transition-colors mt-1">
+                        {contact.phone}
+                      </a>
+                    )}
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
 
-        {/* FAQs */}
+        {/* FAQs — Focus Accordions */}
         <div className="reveal">
-          <div className="flex justify-between items-end border-b-2 border-[#1b1c1d] pb-4 mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-[#1b1c1d]" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>Frequently Asked Questions</h2>
+          <div className="flex justify-between items-end border-b-2 border-gray-200 pb-6 mb-16">
+            <h2 className="text-4xl md:text-5xl font-bold text-[#1b1c1d] tracking-tight reveal reveal-fade stagger-1" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>Frequently Asked Questions</h2>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
             {faqs.map((faq, i) => (
-              <div key={i} className="border-t-2 border-[#1b1c1d] pt-6">
-                <h3 className="font-bold text-[#1b1c1d] mb-3 text-base leading-snug" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
-                  {faq.q}
-                </h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{faq.a}</p>
-              </div>
+              <details key={i} className="group border border-gray-200 rounded-xl bg-white focus-within:ring-2 focus-within:ring-[#a41034]/20 transition-all duration-300 overflow-hidden shadow-sm hover:shadow-md">
+                <summary className="flex items-center justify-between p-6 cursor-pointer select-none">
+                  <h3 className="font-bold text-[#1b1c1d] text-[15px] leading-snug pr-4 group-hover:text-[#a41034] transition-colors" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
+                    {faq.q}
+                  </h3>
+                  <div className="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center flex-shrink-0 group-hover:bg-red-50 transition-colors">
+                    <svg className="w-4 h-4 text-gray-500 group-hover:text-[#a41034] group-open:-rotate-180 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                    </svg>
+                  </div>
+                </summary>
+                <div className="px-6 pb-6 text-gray-600 text-sm leading-relaxed border-t border-gray-50 pt-4 bg-gray-50/50">
+                  {faq.a}
+                </div>
+              </details>
             ))}
           </div>
         </div>
@@ -266,9 +291,12 @@ export default async function AdmissionsPage() {
       </div>
 
       {/* Footer strip */}
-      <div className="w-full bg-[#111] border-t-4 border-[#a41034] py-8 px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p className="text-gray-500 text-xs">© {new Date().getFullYear()} Starford International University. All rights reserved.</p>
-        <Link href="/" className="text-[#a41034] font-bold text-xs uppercase tracking-widest hover:underline">← Back to Home</Link>
+      <div className="relative z-10 w-full bg-[#111] border-t-4 border-[#a41034] py-8 px-6 lg:px-12 flex flex-col md:flex-row justify-between items-center gap-4 reveal">
+        <p className="text-gray-500 text-xs tracking-wide">© {new Date().getFullYear()} Starford International University. All rights reserved.</p>
+        <Link href="/" className="group flex items-center gap-2 text-[#a41034] font-bold text-xs uppercase tracking-widest hover:text-white transition-colors">
+          <svg className="w-3 h-3 group-hover:-translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" /></svg>
+          Back to Home
+        </Link>
       </div>
     </div>
   );
