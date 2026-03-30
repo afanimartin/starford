@@ -6,10 +6,6 @@ import { useState, useEffect, useRef } from "react";
 import NavBar from "./components/NavBar";
 import type { HomeCopy } from "@/lib/content";
 
-function clamp(value: number, min: number, max: number): number {
-  return Math.min(Math.max(value, min), max);
-}
-
 function splitHeadlineIntoLines(headline: string): string[] {
   const words = headline.trim().split(/\s+/);
   if (words.length <= 3) return [headline];
@@ -21,9 +17,7 @@ function splitHeadlineIntoLines(headline: string): string[] {
 export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
   const slides = homeCopy.slides;
   const [scrollY, setScrollY] = useState(0);
-  const [scrollZoomProgress, setScrollZoomProgress] = useState(0);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
-  const scrollZoomRef = useRef<HTMLElement>(null);
   useEffect(() => {
     if (typeof window === "undefined" || !window.matchMedia) return;
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -36,14 +30,6 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
   useEffect(() => {
     const handler = () => {
       setScrollY(window.scrollY);
-
-      const node = scrollZoomRef.current;
-      if (!node) return;
-
-      const rect = node.getBoundingClientRect();
-      const viewportHeight = window.innerHeight || 1;
-      const rawProgress = (viewportHeight - rect.top) / (rect.height - viewportHeight * 0.15);
-      setScrollZoomProgress(clamp(rawProgress, 0, 1));
     };
 
     handler();
@@ -77,11 +63,6 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
   };
   const headlineLines = splitHeadlineIntoLines(slide.headline);
   let wordDelayIndex = 0;
-  const zoomScale = prefersReducedMotion ? 1 : 0.72 + scrollZoomProgress * 0.48;
-  const zoomOpacity = prefersReducedMotion ? 1 : 0.16 + scrollZoomProgress * 0.84;
-  const zoomBlur = prefersReducedMotion ? 0 : (1 - scrollZoomProgress) * 14;
-  const zoomLetterSpacing = prefersReducedMotion ? "0.08em" : `${0.28 - scrollZoomProgress * 0.2}em`;
-  const zoomTranslateY = prefersReducedMotion ? 0 : (1 - scrollZoomProgress) * 64;
 
   const moveSlide = (dir: 1 | -1) => {
     if (slides.length === 0) return;
@@ -329,22 +310,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
         </div>
       </section>
 
-      {/* 5. Scroll Zoom Statement */}
-      <section
-        ref={scrollZoomRef}
-        className="relative h-[170vh] overflow-clip bg-[#f3efe6]"
-      >
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.9),rgba(243,239,230,0.7)_38%,rgba(164,16,52,0.08)_100%)]" />
-        <div className="absolute inset-x-0 top-0 h-40 bg-gradient-to-b from-[#f3efe6] to-transparent" />
-        <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-[#f3efe6] to-transparent" />
-
-        <div className="sticky top-0 flex h-screen items-center justify-center px-6 lg:px-12">
-          <div className="mx-auto flex max-w-6xl flex-col items-center text-center">
-          </div>
-        </div>
-      </section>
-
-      {/* 6. Admissions + Accreditation CTA Banner */}
+      {/* 5. Admissions + Accreditation CTA Banner */}
       <section className="w-full bg-[var(--brand-blue)] py-10 px-6 lg:px-12 reveal">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
           <div>
@@ -366,7 +332,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
         </div>
       </section>
 
-      {/* 7. Message from the Chairman */}
+      {/* 6. Message from the Chairman */}
       <section className="w-full bg-white py-24 px-6 lg:px-12 border-b border-gray-100">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
