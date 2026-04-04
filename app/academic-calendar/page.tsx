@@ -9,37 +9,36 @@ export const metadata: Metadata = {
 };
 
 const semester1 = [
-  { date: "January 13", event: "January 2025 Intake — Registration Opens" },
-  { date: "January 20", event: "Orientation Week for New Students" },
-  { date: "January 27", event: "Semester One Lectures Begin" },
-  { date: "February 14", event: "Late Registration Deadline" },
-  { date: "March 17–21", event: "Mid-Semester Examinations (Sem 1)" },
-  { date: "April 18–25", event: "Easter Break (University Closed)" },
-  { date: "May 12–23", event: "End-of-Semester One Examinations" },
-  { date: "May 30", event: "Semester One Results Release" },
-  { date: "June 2–13", event: "Inter-Semester Break" },
+  { date: "13th January", event: "January 2025 Intake — Registration Opens" },
+  { date: "20th January", event: "Orientation Week for New Students" },
+  { date: "27th January", event: "Semester One Lectures Begin" },
+  { date: "14th February", event: "Late Registration Deadline" },
+  { date: "17th–21st March", event: "Mid-Semester Examinations (Sem 1)" },
+  { date: "18th–25th April", event: "Easter Break (University Closed)" },
+  { date: "12th–23rd May", event: "End-of-Semester One Examinations" },
+  { date: "30th May", event: "Semester One Results Release" },
+  { date: "2nd–13th June", event: "Inter-Semester Break" },
 ];
 
 const semester2 = [
-  { date: "June 16", event: "Semester Two — Registration Opens" },
-  { date: "June 23", event: "Semester Two Lectures Begin" },
-  { date: "July 9", event: "Late Registration Deadline" },
-  { date: "August 11–15", event: "Mid-Semester Examinations (Sem 2)" },
-  { date: "September 22", event: "South Sudan Independence Day Observance" },
-  { date: "October 6–17", event: "End-of-Semester Two Examinations" },
-  { date: "October 24", event: "Semester Two Results Release" },
-  { date: "October 27 – Nov 7", event: "Supplementary Examination Period" },
+  { date: "16th June", event: "Semester Two — Registration Opens" },
+  { date: "23rd June", event: "Semester Two Lectures Begin" },
+  { date: "9th July", event: "Late Registration Deadline / South Sudan Independence Day Observance" },
+  { date: "11th–15th August", event: "Mid-Semester Examinations (Sem 2)" },
+  { date: "6th–17th October", event: "End-of-Semester Two Examinations" },
+  { date: "24th October", event: "Semester Two Results Release" },
+  { date: "27th October – 7th November", event: "Supplementary Examination Period" },
 ];
 
 const semester3 = [
-  { date: "October 13", event: "October 2025 Intake — Registration Opens" },
-  { date: "October 20", event: "Orientation for New Students" },
-  { date: "October 27", event: "Semester Three Lectures Begin" },
-  { date: "November 10", event: "Late Registration Deadline" },
-  { date: "December 1–5", event: "Mid-Semester Examinations (Sem 3)" },
-  { date: "December 22 – Jan 2", event: "Christmas & New Year Break" },
-  { date: "January 5, 2026", event: "Semester Three Resumes" },
-  { date: "January 12–23, 2026", event: "End-of-Semester Three Examinations" },
+  { date: "13th October", event: "October 2025 Intake — Registration Opens" },
+  { date: "20th October", event: "Orientation for New Students" },
+  { date: "27th October", event: "Semester Three Lectures Begin" },
+  { date: "10th November", event: "Late Registration Deadline" },
+  { date: "1st–5th December", event: "Mid-Semester Examinations (Sem 3)" },
+  { date: "22nd December – 2nd January", event: "Christmas & New Year Break" },
+  { date: "5th January 2026", event: "Semester Three Resumes" },
+  { date: "12th–23rd January 2026", event: "End-of-Semester Three Examinations" },
 ];
 
 const keyDates = [

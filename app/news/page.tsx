@@ -69,10 +69,8 @@ export default async function NewsPage() {
         </div>
 
         {/* Featured article */}
-        <a
-          href={featured.href}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href={featured.slug ? `/news/${featured.slug}` : featured.href}
           className="group block bg-[#1b1c1d] mb-12 hover:bg-[#111] transition-colors overflow-hidden reveal"
         >
           <div className="flex flex-col md:flex-row items-stretch">
@@ -106,16 +104,14 @@ export default async function NewsPage() {
               </span>
             </div>
           </div>
-        </a>
+        </Link>
 
         {/* Rest of articles grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 border-t border-l border-gray-200">
           {rest.map((article, i) => (
-            <a
+            <Link
               key={i}
-              href={article.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={article.slug ? `/news/${article.slug}` : article.href}
               className={`group border-b border-r border-gray-200 hover:bg-gray-50 transition-colors flex flex-col reveal stagger-${(i % 6) + 1}`}
             >
               {"image" in article && article.image && (
@@ -147,7 +143,7 @@ export default async function NewsPage() {
                   </svg>
                 </span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
 

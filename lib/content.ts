@@ -9,6 +9,8 @@ export type NewsArticle = {
   featured: boolean;
   image: string;
   date?: string;
+  slug?: string;
+  body?: string;
 };
 
 export type HomeCopy = {
@@ -90,7 +92,11 @@ async function getFallbackNews(): Promise<NewsArticle[]> {
   const jsonFiles = files.filter((file) => file.endsWith(".json"));
 
   const articles = await Promise.all(
-    jsonFiles.map(async (file) => readJsonFile<NewsArticle>(path.join(newsDir, file)))
+    jsonFiles.map(async (file) => {
+      const article = await readJsonFile<NewsArticle>(path.join(newsDir, file));
+      if (!article.slug) article.slug = file.replace('.json', '');
+      return article;
+    })
   );
 
   return sortArticles(articles);
@@ -103,9 +109,11 @@ export async function getNewsArticles(): Promise<NewsArticle[]> {
       excerpt,
       category,
       "href": coalesce(href, "/news"),
+      "slug": slug.current,
       featured,
       "image": coalesce(image.asset->url, image),
-      date
+      date,
+      body
     }`
   );
 
@@ -114,6 +122,11 @@ export async function getNewsArticles(): Promise<NewsArticle[]> {
   }
 
   return getFallbackNews();
+}
+
+export async function getNewsArticleBySlug(slug: string): Promise<NewsArticle | null> {
+  const allArticles = await getNewsArticles();
+  return allArticles.find(a => a.slug === slug) || null;
 }
 
 async function getFallbackHomeCopy(): Promise<HomeCopy> {

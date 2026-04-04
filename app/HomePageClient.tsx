@@ -43,14 +43,12 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
 
   /* ── Hero slide rotator ── */
   const [slideIdx, setSlideIdx] = useState(0);
-  const [direction, setDirection] = useState<1 | -1>(1);
   const [progressResetKey, setProgressResetKey] = useState(0);
   const [spotlight, setSpotlight] = useState({ x: 50, y: 30 });
   const touchStartX = useRef<number | null>(null);
   useEffect(() => {
     if (prefersReducedMotion || slides.length === 0) return;
     const id = setInterval(() => {
-      setDirection(1);
       setSlideIdx((i) => (i + 1) % slides.length);
       setProgressResetKey((v) => v + 1);
     }, 5000);
@@ -62,11 +60,9 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
     sub: "Equipping students with digital skills, data fluency, and innovative thinking to lead South Sudan's knowledge economy.",
   };
   const headlineLines = splitHeadlineIntoLines(slide.headline);
-  let wordDelayIndex = 0;
 
   const moveSlide = (dir: 1 | -1) => {
     if (slides.length === 0) return;
-    setDirection(dir);
     setSlideIdx((prev) => (prev + dir + slides.length) % slides.length);
     setProgressResetKey((v) => v + 1);
   };
@@ -118,10 +114,10 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
         </div>
         <div className="flex gap-5 uppercase tracking-wider text-[10px] font-bold">
           <span className="opacity-40 hidden md:block">Info For:</span>
-          <a href="#" className="hover:text-[var(--brand-red)] transition-colors">Students</a>
-          <a href="#" className="hover:text-[var(--brand-red)] transition-colors">Faculty &amp; Staff</a>
-          <a href="#" className="hover:text-[var(--brand-red)] transition-colors">Alumni</a>
-          <a href="#" className="hover:text-[var(--brand-red)] transition-colors">Partners</a>
+          <Link href="/student-application" className="hover:text-[var(--brand-red)] transition-colors">Students</Link>
+          <Link href="/leadership" className="hover:text-[var(--brand-red)] transition-colors">Faculty &amp; Staff</Link>
+          <Link href="/" className="hover:text-[var(--brand-red)] transition-colors">Alumni</Link>
+          <Link href="/" className="hover:text-[var(--brand-red)] transition-colors">Partners</Link>
         </div>
       </div>
 
@@ -199,12 +195,13 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
               style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}
             >
               <span className="flex flex-col gap-1 md:gap-2">
-                {headlineLines.map((line, lineIndex) => (
+                {headlineLines.map((line, lineIndex) => {
+                  const wordsBefore = headlineLines.slice(0, lineIndex).reduce((sum, l) => sum + l.split(" ").length, 0);
+                  return (
                   <span key={`${slideIdx}-${line}`} className="block overflow-hidden">
                     <span className="block">
                       {line.split(" ").map((word, wordIndex, words) => {
-                        const delay = wordDelayIndex * 150;
-                        wordDelayIndex += 1;
+                        const delay = (wordsBefore + wordIndex) * 150;
 
                         return (
                           <span
@@ -223,7 +220,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
                       })}
                     </span>
                   </span>
-                ))}
+                )})}
               </span>
             </h1>
 
@@ -261,7 +258,6 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
               <button
                 key={i}
                 onClick={() => {
-                  setDirection(i > slideIdx ? 1 : -1);
                   setSlideIdx(i);
                   setProgressResetKey((v) => v + 1);
                 }}
@@ -406,7 +402,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
           {/* Main Feature */}
           <article className="md:col-span-7 group cursor-pointer">
-            <Link href="/news">
+            <Link href="/news/celebrating-the-academic-achievement-of-dr-matur-ater-majing">
               <div className="relative overflow-hidden mb-6 aspect-[4/3] bg-gray-200 hover-shimmer" style={{ transform: prefersReducedMotion ? "none" : `translateY(${Math.max(-14, Math.min(14, (scrollY - 1200) * 0.03))}px)` }}>
                 <Image
                   src="/chancellor.jpg"
@@ -429,7 +425,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
           {/* Secondary Features */}
           <div className="md:col-span-5 flex flex-col gap-10">
             <article className="group cursor-pointer">
-              <Link href="/news">
+              <Link href="/news/demonstrating-that-disability-is-not-inability">
                 <div className="relative overflow-hidden mb-4 aspect-video bg-gray-200 hover-shimmer" style={{ transform: prefersReducedMotion ? "none" : `translateY(${Math.max(-10, Math.min(10, (scrollY - 1400) * -0.02))}px)` }}>
                   <Image
                     src="/disability.jpg"
@@ -447,7 +443,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
             </article>
 
             <article className="group cursor-pointer pt-8 border-t border-gray-200">
-              <Link href="/admissions">
+              <Link href="/news/call-for-admission-january-2026-intake">
                 <span className="text-[var(--brand-red)] font-bold text-[10px] tracking-widest uppercase mb-2 block">Admissions</span>
                 <h3 className="text-xl font-bold text-[#1b1c1d] group-hover:text-[var(--brand-red)] transition-colors leading-snug mb-3" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
                   Call for Admission — January 2026 Intake
@@ -459,7 +455,7 @@ export default function HomePageClient({ homeCopy }: { homeCopy: HomeCopy }) {
             </article>
 
             <article className="group cursor-pointer pt-8 border-t border-gray-200">
-              <Link href="/news">
+              <Link href="/news/semi-finals-set-for-the-fiae-international-humanitarian-law-moot">
                 <span className="text-[var(--brand-red)] font-bold text-[10px] tracking-widest uppercase mb-2 block">Success Story</span>
                 <h3 className="text-xl font-bold text-[#1b1c1d] group-hover:text-[var(--brand-red)] transition-colors leading-snug" style={{ fontFamily: "var(--font-playfair), Georgia, serif" }}>
                   SIU Moot Court Team Wins 5th South Sudan IHL Competition
