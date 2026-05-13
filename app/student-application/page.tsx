@@ -32,7 +32,6 @@ const PROGRAMMES: Record<string, string[]> = {
   ],
   "College of Law": [
     "Bachelor of Laws (LLB)",
-    "Diploma in Law",
   ],
   "College of Management Sciences": [
     "Bachelor of Business Administration",

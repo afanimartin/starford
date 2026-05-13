@@ -25,7 +25,7 @@ const colleges = [
       "Diploma of Computer Science (Dipl. CSs)",
       "Diploma of Information Technology (Dip. IT)",
     ],
-    img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1000&auto=format&fit=crop",
+    img: "/csandit.jpeg",
   },
   {
     slug: "economics",
@@ -42,7 +42,7 @@ const colleges = [
       "Diploma of Economics",
       "Diploma of Commerce",
     ],
-    img: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1000&auto=format&fit=crop",
+    img: "/economics.jpeg",
   },
   {
     slug: "humanities",
@@ -65,7 +65,7 @@ const colleges = [
       "Diploma of Peace and Security Studies (DPSS)",
       "Diploma of Public Administration and Management (DPAM)",
     ],
-    img: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=1000&auto=format&fit=crop",
+    img: "/humanities.jpeg",
   },
   {
     slug: "law",
@@ -77,10 +77,8 @@ const colleges = [
     degrees: [
       "Bachelor of Laws (LL.B)",
     ],
-    diplomas: [
-      "Diploma of Legal Studies",
-    ],
-    img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=1000&auto=format&fit=crop",
+    diplomas: [],
+    img: "/law.jpeg",
   },
   {
     slug: "management",
@@ -105,7 +103,7 @@ const colleges = [
       "Diploma of Business Administration in Human Resource Management",
       "Diploma of Business Administration in Procurement & Logistic Management",
     ],
-    img: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=1000&auto=format&fit=crop",
+    img: "/management.jpeg",
   },
 ];
 
@@ -197,19 +195,21 @@ export default function AcademicsPage() {
                     ))}
                   </ul>
                 </div>
-                <div>
-                  <h3 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4 flex items-center gap-2">
-                    <span className="w-4 h-0.5 bg-gray-300 inline-block" /> Diploma Programmes
-                  </h3>
-                  <ul className="space-y-2">
-                    {college.diplomas.map((d, j) => (
-                      <li key={j} className="flex gap-2 text-sm text-gray-500">
-                        <span className="text-gray-300 font-bold mt-0.5">›</span>
-                        {d}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {college.diplomas.length > 0 && (
+                  <div>
+                    <h3 className="text-[10px] font-bold uppercase tracking-widest text-gray-400 mb-4 flex items-center gap-2">
+                      <span className="w-4 h-0.5 bg-gray-300 inline-block" /> Diploma Programmes
+                    </h3>
+                    <ul className="space-y-2">
+                      {college.diplomas.map((d, j) => (
+                        <li key={j} className="flex gap-2 text-sm text-gray-500">
+                          <span className="text-gray-300 font-bold mt-0.5">›</span>
+                          {d}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
 
               <Link href="/admissions" className="mt-10 inline-block px-7 py-3 bg-[var(--brand-blue)] text-[var(--brand-yellow)] font-bold text-xs uppercase tracking-widest hover:bg-[#a41034] hover:text-white transition-colors self-start">
