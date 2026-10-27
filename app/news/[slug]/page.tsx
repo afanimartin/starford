@@ -3,11 +3,20 @@ import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
 import NavBar from '../../components/NavBar';
-import { getNewsArticleBySlug } from '@/lib/content';
+import { getNewsArticleBySlug, getNewsArticles } from '@/lib/content';
 
 interface Props {
   params: Promise<{ slug: string }>;
 }
+
+export async function generateStaticParams() {
+  const articles = await getNewsArticles();
+  return articles
+    .filter((article) => article.slug)
+    .map((article) => ({ slug: article.slug! }));
+}
+
+export const dynamicParams = false;
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const resolvedParams = await params;
